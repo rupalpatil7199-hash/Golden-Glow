@@ -1,0 +1,28 @@
+# Dependency directories
+node_modules/
+node-local/
+.agents/
+
+# Build outputs
+dist/
+build/
+
+# IDE and OS files
+.DS_Store
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

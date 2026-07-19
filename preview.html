@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Golden Glow | Boutique Luxury Jewellery</title>
+  <!-- Tailwind CSS & Plugins -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#c9b067', // Champagne Gold
+              glow: '#d4af37',
+              dark: '#554300',
+            },
+            surface: {
+              DEFAULT: '#14171d', // Slate surface
+              low: '#0d0f12',
+              container: '#1e232e',
+              high: '#272d3a',
+              highest: '#303746',
+            },
+            luxuryBlack: '#08090b',
+            obsidian: '#08090b',
+            platinum: '#f8f9fa',
+            titanium: '#a2a7af',
+            champagne: '#c9b067',
+            slateSurface: '#14171d',
+          },
+          fontFamily: {
+            serif: ['Tenor Sans', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          boxShadow: {
+            'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.4)',
+            'luxury': '0 20px 40px -15px rgba(0, 0, 0, 0.5)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass {
+      background: rgba(20, 23, 29, 0.72);
+      backdrop-filter: blur(24px) saturate(140%);
+      -webkit-backdrop-filter: blur(24px) saturate(140%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
+    }
+    .shimmer-bg {
+      background: linear-gradient(90deg, #14171d 25%, #1e232e 50%, #14171d 75%);
+      background-size: 200% 100%;
+    }
+    /* Smooth reveal transitions */
+    [x-cloak] { display: none !important; }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #08090b;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(162, 167, 175, 0.25);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #c9b067;
+    }
+  </style>
+</head>
+<body 
+  class="bg-obsidian text-platinum font-sans antialiased overflow-x-hidden"
+  x-data="boutiqueApp()"
+  x-init="initApp()"
+>
+
+  <!-- Global Header (Floating Glassmorphism) -->
+  <header 
+    class="fixed top-0 left-0 w-full z-50 transition-all duration-500"
+    :class="isScrolled ? 'h-16 bg-obsidian/85 backdrop-blur-xl border-b border-white/5 shadow-glass' : 'h-24 bg-transparent'"
+  >
+    <div class="max-w-7xl mx-auto h-full px-6 md:px-12 flex items-center justify-between">
+      
+      {/* Navigation */}
+      <div class="flex items-center gap-6">
+        <button class="md:hidden text-platinum hover:text-champagne" @click="isMobileMenuOpen = true">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="#" @click.prevent="currentView = 'home'" class="text-xs tracking-[0.2em] font-semibold hover:text-champagne transition-colors" :class="currentView === 'home' ? 'text-primary' : 'text-platinum'">HOME</a>
+          <a href="#" @click.prevent="currentView = 'shop'" class="text-xs tracking-[0.2em] font-semibold hover:text-champagne transition-colors" :class="currentView === 'shop' ? 'text-primary' : 'text-platinum'">SHOP</a>
+          <a href="#" @click.prevent="currentView = 'about'" class="text-xs tracking-[0.2em] font-semibold hover:text-champagne transition-colors" :class="currentView === 'about' ? 'text-primary' : 'text-platinum'">ABOUT</a>
+          <a href="#" @click.prevent="currentView = 'blogs'" class="text-xs tracking-[0.2em] font-semibold hover:text-champagne transition-colors" :class="currentView === 'blogs' ? 'text-primary' : 'text-platinum'">JOURNAL</a>
+        </nav>
+      </div>
+
+      {/* Brand logo (center) */}
+      <div class="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
+        <a href="#" @click.prevent="currentView = 'home'" class="font-serif text-2xl md:text-3xl font-normal tracking-[0.1em] uppercase text-platinum hover:text-champagne transition-colors">Golden Glow</a>
+        <span class="hidden md:block text-[8px] tracking-[0.4em] text-champagne uppercase mt-[2px]">Fine Jewelry</span>
+      </div>
+
+      {/* Action icons (Right) */}
+      <div class="flex items-center gap-4 md:gap-6">
+        
+        {/* Search */}
+        <div class="relative">
+          <button @click="searchOpen = !searchOpen" class="text-platinum hover:text-champagne p-1">
+            <i data-lucide="search" class="w-5 h-5"></i>
+          </button>
+          <div 
+            x-show="searchOpen" 
+            x-cloak
+            @click.outside="searchOpen = false"
+            class="absolute right-0 top-10 bg-surface shadow-luxury p-3 border border-white/5 rounded-xl flex items-center gap-2 w-64 md:w-80"
+          >
+            <input
+              type="text"
+              placeholder="Search jewels..."
+              x-model="searchQuery"
+              @input="currentView = 'shop'"
+              class="bg-obsidian border border-white/10 text-xs p-2 rounded flex-grow focus:outline-none focus:ring-1 focus:ring-primary text-platinum placeholder:text-titanium/50"
+            />
+          </div>
+        </div>
+
+        {/* Wishlist */}
+        <a href="#" @click.prevent="currentView = 'dashboard'; activeTab = 'wishlist'" class="relative text-platinum hover:text-champagne p-1">
+          <i data-lucide="heart" class="w-5 h-5"></i>
+          <span 
+            x-show="wishlist.length > 0"
+            x-text="wishlist.length"
+            class="absolute -top-[2px] -right-[2px] bg-primary text-obsidian text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold"
+          ></span>
+        </a>
+
+        {/* Cart */}
+        <button @click="isCartOpen = true" class="relative text-platinum hover:text-champagne p-1">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <span 
+            x-show="cart.length > 0"
+            x-text="cart.reduce((sum, item) => sum + item.quantity, 0)"
+            class="absolute -top-[2px] -right-[2px] bg-primary text-obsidian text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold"
+          ></span>
+        </button>
+
+        {/* User profile dropdown */}
+        <div class="relative" x-data="{ open: false }">
+          <button @click="open = !open" class="flex items-center gap-1 hover:text-champagne focus:outline-none text-platinum">
+            <template x-if="user">
+              <div class="flex items-center gap-1">
+                <img :src="user.avatar" class="w-7 h-7 rounded-full border border-primary object-cover" />
+                <i data-lucide="chevron-down" class="w-3 h-3 opacity-60"></i>
+              </div>
+            </template>
+            <template x-if="!user">
+              <span class="text-xs border border-white/20 px-3 py-1 font-semibold tracking-wider hover:border-champagne rounded transition-all">LOGIN</span>
+            </template>
+          </button>
+
+          <div 
+            x-show="open" 
+            x-cloak
+            @click.outside="open = false"
+            class="absolute right-0 top-10 bg-surface border border-white/5 rounded-xl shadow-luxury py-2 w-48 z-[60] text-platinum"
+          >
+            <template x-if="user">
+              <div>
+                <div class="px-4 py-2 border-b border-white/5">
+                  <p class="text-xs font-semibold text-platinum truncate" x-text="user.fullName"></p>
+                  <p class="text-[10px] text-titanium truncate" x-text="user.email"></p>
+                </div>
+                <template x-if="user.role === 'admin'">
+                  <a href="#" @click.prevent="currentView = 'admin'; open = false" class="flex items-center gap-2 px-4 py-2 text-xs hover:bg-slateSurface text-platinum">
+                    <i data-lucide="shield" class="w-4 h-4 text-primary"></i> Admin Panel
+                  </a>
+                </template>
+                <a href="#" @click.prevent="currentView = 'dashboard'; open = false" class="flex items-center gap-2 px-4 py-2 text-xs hover:bg-slateSurface text-platinum">
+                  <i data-lucide="user" class="w-4 h-4"></i> My Dashboard
+                </a>
+                <button @click="logout(); open = false" class="w-full flex items-center gap-2 px-4 py-2 text-xs text-red-400 hover:bg-red-950/20 text-left">
+                  <i data-lucide="log-out" class="w-4 h-4"></i> Logout
+                </button>
+              </div>
+            </template>
+            <template x-if="!user">
+              <div class="p-2 space-y-1">
+                <button @click="login('customer'); open = false" class="w-full text-left px-3 py-2 text-xs hover:bg-slateSurface rounded">Customer Demo</button>
+                <button @click="login('admin'); open = false" class="w-full text-left px-3 py-2 text-xs hover:bg-slateSurface text-primary rounded font-semibold">Admin Demo</button>
+              </div>
+            </template>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div 
+    x-show="isMobileMenuOpen"
+    x-cloak
+    class="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm flex justify-start"
+  >
+    <div 
+      class="w-72 max-w-[80vw] bg-surface border-r border-white/5 h-full p-6 flex flex-col justify-between shadow-xl text-platinum"
+      @click.outside="isMobileMenuOpen = false"
+    >
+      <div>
+        <div class="flex items-center justify-between mb-10">
+          <span class="font-serif text-xl text-platinum font-normal uppercase tracking-widest">Golden Glow</span>
+          <button @click="isMobileMenuOpen = false">
+            <i data-lucide="x" class="w-6 h-6 text-platinum hover:text-champagne"></i>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-6">
+          <a href="#" @click.prevent="currentView = 'home'; isMobileMenuOpen = false" class="text-sm tracking-widest hover:text-champagne font-medium text-platinum">HOME</a>
+          <a href="#" @click.prevent="currentView = 'shop'; isMobileMenuOpen = false" class="text-sm tracking-widest hover:text-champagne font-medium text-platinum">SHOP COLLECTION</a>
+          <a href="#" @click.prevent="currentView = 'about'; isMobileMenuOpen = false" class="text-sm tracking-widest hover:text-champagne font-medium text-platinum">OUR STORY</a>
+          <a href="#" @click.prevent="currentView = 'blogs'; isMobileMenuOpen = false" class="text-sm tracking-widest hover:text-champagne font-medium text-platinum">THE JOURNAL</a>
+          <a href="#" @click.prevent="currentView = 'faq'; isMobileMenuOpen = false" class="text-sm tracking-widest hover:text-champagne font-medium text-platinum">CUSTOMER FAQ</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Bar -->
+  <nav class="md:hidden flex justify-around items-center h-16 bg-obsidian/95 backdrop-blur-lg fixed bottom-0 w-full z-50 rounded-t-2xl shadow-luxury border-t border-white/5">
+    <a href="#" @click.prevent="currentView = 'home'" class="flex flex-col items-center justify-center text-[10px] gap-1" :class="currentView === 'home' ? 'text-primary' : 'text-titanium'">
+      <i data-lucide="home" class="w-5 h-5"></i>
+      <span>Home</span>
+    </a>
+    <a href="#" @click.prevent="currentView = 'shop'" class="flex flex-col items-center justify-center text-[10px] gap-1" :class="currentView === 'shop' ? 'text-primary' : 'text-titanium'">
+      <i data-lucide="store" class="w-5 h-5"></i>
+      <span>Shop</span>
+    </a>
+    <a href="#" @click.prevent="currentView = 'dashboard'; activeTab = 'wishlist'" class="flex flex-col items-center justify-center text-[10px] gap-1" :class="currentView === 'dashboard' && activeTab === 'wishlist' ? 'text-primary' : 'text-titanium'">
+      <i data-lucide="heart" class="w-5 h-5"></i>
+      <span>Wishlist</span>
+    </a>
+    <a href="#" @click.prevent="currentView = 'dashboard'; activeTab = 'profile'" class="flex flex-col items-center justify-center text-[10px] gap-1" :class="currentView === 'dashboard' && activeTab === 'profile' ? 'text-primary' : 'text-titanium'">
+      <i data-lucide="user" class="w-5 h-5"></i>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- VIEW PORT CONTAINER -->
+  <div class="min-h-screen">
+    
+    <!-- VIEW: HOME -->
+    <template x-if="currentView === 'home'">
+      <div class="animate-[fadeIn_0.6s_ease_forwards]">
+        
+        <!-- Hero Section -->
+        <section 
+          class="relative h-[85vh] md:h-screen w-full flex items-center overflow-hidden bg-obsidian cursor-crosshair"
+          @mousemove="updateHeroCoords($event)"
+          @mouseleave="heroCoords.active = false"
+        >
+          {/* Spotlight overlay */}
+          <div 
+            class="absolute inset-0 z-10 pointer-events-none transition-opacity duration-300"
+            :class="heroCoords.active ? 'opacity-100' : 'opacity-0'"
+            :style="`background: radial-gradient(circle 220px at ${heroCoords.x}px ${heroCoords.y}px, rgba(201, 176, 103, 0.12) 0%, transparent 80%);`"
+          ></div>
+          
+          {/* Tracking Crosshair lines */}
+          <div 
+            class="absolute inset-0 z-10 pointer-events-none"
+            x-show="heroCoords.active"
+            x-cloak
+          >
+            <!-- Vertical Line -->
+            <div 
+              class="absolute top-0 bottom-0 w-[1px] bg-champagne/15"
+              :style="`left: ${heroCoords.x}px;`"
+            ></div>
+            <!-- Horizontal Line -->
+            <div 
+              class="absolute left-0 right-0 h-[1px] bg-champagne/15"
+              :style="`top: ${heroCoords.y}px;`"
+            ></div>
+            <!-- Coordinate Badge -->
+            <div 
+              class="absolute bg-obsidian/90 border border-white/10 px-2 py-1 rounded text-[9px] font-mono text-champagne tracking-widest"
+              :style="`left: ${heroCoords.x + 15}px; top: ${heroCoords.y + 15}px;`"
+            >
+              LOC: [<span x-text="heroCoords.x"></span>, <span x-text="heroCoords.y"></span>]
+            </div>
+          </div>
+
+          <!-- Ambient background glow & Cursor Grid -->
+          <div class="absolute inset-0 overflow-hidden z-0">
+            <img 
+              src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1600&q=80" 
+              class="w-full h-full object-cover opacity-35 select-none pointer-events-none"
+            />
+            <div class="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/45 to-transparent pointer-events-none" />
+            <canvas id="hero-cursor-grid" class="absolute inset-0 w-full h-full block opacity-45 pointer-events-auto"></canvas>
+            <div class="absolute top-[20%] right-[10%] w-[500px] h-[500px] rounded-full bg-champagne/5 liquid-orb-1 pointer-events-none"></div>
+            <div class="absolute bottom-[10%] left-[5%] w-[400px] h-[400px] rounded-full bg-titanium/5 liquid-orb-2 pointer-events-none"></div>
+          </div>
+
+          <div class="relative z-20 max-w-7xl mx-auto px-6 md:px-12 w-full text-platinum mt-16 space-y-6">
+            <span class="text-xs tracking-[0.3em] uppercase text-champagne font-semibold block">New Heritage Collection</span>
+            <h1 class="font-serif text-4xl md:text-6xl tracking-wide uppercase leading-tight max-w-xl">Artistry in Every <span class="italic text-champagne">Glow</span></h1>
+            <p class="text-sm md:text-base text-titanium max-w-md leading-relaxed font-sans">
+              Experience the timeless elegance of handcrafted fine jewelry, designed for life’s most precious milestones.
+            </p>
+            <div class="flex gap-4 pt-4">
+              <button @click="currentView = 'shop'" class="bg-platinum hover:bg-champagne text-obsidian px-8 py-4 text-xs font-bold tracking-[0.2em] uppercase rounded-lg shadow-luxury transition-colors duration-300">SHOP COLLECTION</button>
+              <button @click="currentView = 'about'" class="border border-white/10 text-platinum backdrop-blur-md px-8 py-4 text-xs font-bold tracking-[0.2em] uppercase hover:bg-white/5 rounded-lg transition-colors duration-300">OUR STORY</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Shop by Category -->
+        <section class="py-24 bg-obsidian border-b border-white/5">
+          <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="text-center max-w-lg mx-auto mb-16 space-y-3">
+              <span class="text-xs tracking-[0.2em] font-semibold text-champagne uppercase">Curated Catalog</span>
+              <h2 class="text-3xl md:text-4xl font-normal tracking-wider uppercase font-serif text-platinum">Shop by Category</h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+              <template x-for="cat in categories" :key="cat">
+                <div 
+                  @click="selectedCategory = cat; currentView = 'shop'"
+                  class="group cursor-pointer flex flex-col items-center p-6 bg-slateSurface rounded-2xl hover:shadow-luxury border border-white/5 transition-all duration-500"
+                >
+                  <div class="w-16 h-16 rounded-full bg-obsidian border border-white/5 flex items-center justify-center mb-4 group-hover:bg-champagne/10 transition-colors">
+                    <span class="material-symbols-outlined text-2xl text-champagne" x-text="cat === 'Rings' ? 'diamond' : cat === 'Earrings' ? 'star' : cat === 'Necklaces' ? 'straighten' : 'auto_awesome'"></span>
+                  </div>
+                  <span class="font-sans text-xs font-semibold tracking-widest uppercase text-platinum group-hover:text-champagne transition-colors" x-text="cat"></span>
+                </div>
+              </template>
+            </div>
+          </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="py-24 bg-obsidian">
+          <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="flex justify-between items-end mb-12">
+              <div>
+                <span class="text-xs tracking-[0.2em] font-semibold text-champagne uppercase">Selected Series</span>
+                <h2 class="text-3xl md:text-4xl font-normal tracking-wider uppercase font-serif text-platinum mt-1">Featured Gems</h2>
+              </div>
+              <button @click="currentView = 'shop'" class="text-xs font-bold tracking-widest text-champagne hover:text-platinum transition-colors">EXPLORE ALL</button>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <template x-for="product in products.slice(0, 4)" :key="product._id">
+                <div class="group relative flex flex-col bg-obsidian rounded-2xl overflow-hidden hover:shadow-luxury border border-white/5 transition-all duration-500">
+                  <div class="aspect-[3/4] relative bg-slateSurface overflow-hidden">
+                    <img :src="product.images[0]" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" @click="viewProduct(product._id)" />
+                    <button 
+                      @click="toggleWish(product._id)"
+                      class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-obsidian/80 backdrop-blur-md border border-white/10 flex items-center justify-center text-platinum hover:text-red-500 shadow-glass"
+                    >
+                      <i data-lucide="heart" class="w-4 h-4" :class="wishlist.includes(product._id) ? 'fill-red-500 text-red-500' : ''"></i>
+                    </button>
+                    <button 
+                      @click="addToCart(product)"
+                      class="absolute bottom-4 left-4 right-4 z-20 glass py-3 text-[10px] tracking-[0.2em] font-semibold text-platinum uppercase rounded-lg opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 hover:bg-platinum hover:text-obsidian transition-all duration-300 shadow-md"
+                    >
+                      QUICK ADD
+                    </button>
+                  </div>
+                  <div class="p-4 flex flex-col flex-grow">
+                    <span class="text-[9px] tracking-widest text-titanium font-medium uppercase mb-1" x-text="product.category"></span>
+                    <a href="#" @click.prevent="viewProduct(product._id)" class="font-serif text-sm font-normal text-platinum hover:text-champagne truncate transition-colors" x-text="product.title"></a>
+                    <span class="text-sm font-semibold text-champagne mt-2 font-sans" x-text="'$' + product.price.toLocaleString()"></span>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </section>
+
+        <!-- Brand Story Banner -->
+        <section class="relative py-28 bg-obsidian text-platinum overflow-hidden border-t border-white/5">
+          <div class="absolute right-0 top-0 w-full md:w-1/2 h-full opacity-35 md:opacity-100">
+            <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover opacity-60" />
+            <div class="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/80 to-transparent" />
+          </div>
+          <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+              <span class="text-xs tracking-[0.2em] font-semibold text-champagne uppercase">Artisanship</span>
+              <h2 id="story-reveal-title" class="text-3xl md:text-5xl font-normal font-serif text-platinum tracking-wide uppercase leading-tight select-none">
+                <span class="word inline-block opacity-[0.1] blur-[4px]">ETHICALLY</span>
+                <span class="word inline-block opacity-[0.1] blur-[4px]">METICULOUS.</span>
+                <span class="word inline-block opacity-[0.1] blur-[4px]">TIMELESSLY</span>
+                <span class="word inline-block opacity-[0.1] blur-[4px]">CRAFTED</span>
+              </h2>
+              <p class="text-xs text-titanium leading-relaxed font-sans max-w-sm">
+                At Golden Glow, we believe that fine jewelry is more than an accessory—it is an heirloom of human emotion. Every diamond is conflict-free, and every gram of gold is recycled to protect the world that inspires us.
+              </p>
+              <button @click="currentView = 'about'" class="bg-platinum text-obsidian hover:bg-champagne hover:text-obsidian px-6 py-3 text-xs tracking-wider uppercase font-semibold transition-colors rounded-lg">OUR PHILOSOPHY</button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </template>
+
+    <!-- VIEW: SHOP CATALOG -->
+    <template x-if="currentView === 'shop'">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 pt-32 pb-24 font-sans animate-[fadeIn_0.5s_ease_forwards]">
+        
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12 border-b border-white/5 pb-8">
+          <div>
+            <h1 class="font-serif text-3xl md:text-4xl font-normal uppercase tracking-wider text-platinum">The Atelier Catalog</h1>
+            <p class="text-xs text-titanium mt-1 font-medium tracking-wider uppercase">Fine metals, curated stones, crafted legacy</p>
+          </div>
+          
+          <!-- Search box -->
+          <div class="relative w-full md:w-96 flex items-center bg-slateSurface border border-white/5 rounded-xl p-3 shadow-sm">
+            <i data-lucide="search" class="w-4 h-4 text-champagne mr-2"></i>
+            <input
+              type="text"
+              placeholder="Search gems..."
+              x-model="searchQuery"
+              class="bg-transparent border-none text-xs flex-grow focus:outline-none text-platinum placeholder:text-titanium/40"
+            />
+          </div>
+        </div>
+
+        <div class="flex gap-8">
+          
+          <!-- Filters (Sidebar) -->
+          <aside class="hidden md:block w-64 flex-shrink-0 space-y-8">
+            <div class="flex justify-between items-center">
+              <h3 class="font-serif text-md font-normal uppercase tracking-wider text-platinum flex items-center gap-2">Filters</h3>
+              <button @click="clearFilters()" class="text-[10px] text-champagne hover:text-platinum font-bold underline uppercase">Clear All</button>
+            </div>
+
+            <div class="border-t border-white/5 pt-6">
+              <h4 class="text-xs font-normal uppercase tracking-wider text-platinum mb-4 font-serif">Category</h4>
+              <div class="space-y-2">
+                <button @click="selectedCategory = 'All'" class="w-full text-left text-xs py-1 transition-colors" :class="selectedCategory === 'All' ? 'text-champagne font-semibold' : 'text-titanium hover:text-platinum'">All Categories</button>
+                <template x-for="cat in categories" :key="cat">
+                  <button @click="selectedCategory = cat" class="w-full text-left text-xs py-1 transition-colors" :class="selectedCategory === cat ? 'text-champagne font-semibold' : 'text-titanium hover:text-platinum'" x-text="cat"></button>
+                </template>
+              </div>
+            </div>
+
+            <div class="border-t border-white/5 pt-6">
+              <h4 class="text-xs font-normal uppercase tracking-wider text-platinum mb-4 font-serif">Price Cap</h4>
+              <input type="range" min="0" max="10000" step="100" x-model="priceCap" class="w-full accent-champagne" />
+              <div class="flex justify-between text-xs text-titanium mt-1">
+                <span>$0</span>
+                <span class="text-champagne font-bold" x-text="'$' + Number(priceCap).toLocaleString()"></span>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Grid panel -->
+          <div class="flex-grow">
+            
+            <div class="flex justify-between items-center mb-6 bg-slateSurface rounded-xl p-3 border border-white/5">
+              <span class="text-xs text-titanium font-medium" x-text="'Showing ' + filteredProducts().length + ' precious pieces'"></span>
+              <select x-model="sortBy" class="bg-obsidian border border-white/10 rounded-lg text-xs p-2 text-platinum focus:ring-1 focus:ring-primary">
+                <option value="newest">New Arrivals</option>
+                <option value="price_asc">Price: Low to High</option>
+                <option value="price_desc">Price: High to Low</option>
+              </select>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
+              <template x-for="product in filteredProducts()" :key="product._id">
+                <div class="group relative flex flex-col bg-obsidian rounded-2xl overflow-hidden hover:shadow-luxury border border-white/5 transition-all duration-500">
+                  <div class="aspect-[3/4] relative bg-slateSurface overflow-hidden">
+                    <img :src="product.images[0]" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 cursor-pointer" @click="viewProduct(product._id)" />
+                    <button 
+                      @click="toggleWish(product._id)"
+                      class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-obsidian/80 border border-white/10 backdrop-blur-md flex items-center justify-center text-platinum hover:text-red-500"
+                    >
+                      <i data-lucide="heart" class="w-4 h-4" :class="wishlist.includes(product._id) ? 'fill-red-500 text-red-500' : ''"></i>
+                    </button>
+                    <button 
+                      @click="addToCart(product)"
+                      class="absolute bottom-4 left-4 right-4 z-20 glass py-3 text-[10px] tracking-[0.2em] font-semibold text-platinum uppercase rounded-lg opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 hover:bg-platinum hover:text-obsidian transition-all duration-300 shadow-md"
+                    >
+                      QUICK ADD
+                    </button>
+                  </div>
+                  <div class="p-4 flex flex-col flex-grow">
+                    <span class="text-[9px] tracking-widest text-titanium font-medium uppercase mb-1" x-text="product.category"></span>
+                    <a href="#" @click.prevent="viewProduct(product._id)" class="font-serif text-sm font-normal text-platinum hover:text-champagne truncate transition-colors" x-text="product.title"></a>
+                    <span class="text-sm font-semibold text-champagne mt-2 font-sans" x-text="'$' + product.price.toLocaleString()"></span>
+                  </div>
+                </div>
+              </template>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </template>
+
+    <!-- VIEW: PRODUCT DETAILS -->
+    <template x-if="currentView === 'product-detail' && selectedProduct">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 pt-32 pb-24 font-sans animate-[fadeIn_0.5s_ease_forwards]">
+        <button @click="currentView = 'shop'" class="flex items-center gap-2 text-xs text-titanium hover:text-platinum uppercase tracking-widest font-semibold mb-8 transition-colors">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i> BACK TO CATALOG
+        </button>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+          <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-slateSurface border border-white/5 relative">
+            <img :src="selectedProduct.images[0]" class="w-full h-full object-cover" />
+          </div>
+
+          <div class="space-y-6">
+            <div class="border-b border-white/5 pb-6 space-y-2">
+              <span class="text-xs tracking-[0.2em] font-semibold text-champagne uppercase block" x-text="selectedProduct.category"></span>
+              <h2 class="font-serif text-3xl font-normal uppercase tracking-wider text-platinum tracking-tight" x-text="selectedProduct.title"></h2>
+              <p class="text-xs text-titanium" x-text="'SKU: ' + selectedProduct.sku"></p>
+            </div>
+
+            <div class="text-2xl font-bold text-champagne" x-text="'$' + selectedProduct.price.toLocaleString()"></div>
+            <p class="text-sm text-titanium leading-relaxed" x-text="selectedProduct.description"></p>
+
+            <div class="bg-slateSurface rounded-xl p-4 border border-white/5 space-y-2">
+              <div class="flex justify-between text-xs py-1 border-b border-white/5">
+                <span class="text-titanium">Metal Material</span>
+                <span class="font-semibold text-platinum" x-text="selectedProduct.material"></span>
+              </div>
+              <div class="flex justify-between text-xs py-1">
+                <span class="text-titanium">Metal Weight</span>
+                <span class="font-semibold text-platinum" x-text="selectedProduct.weight"></span>
+              </div>
+            </div>
+
+            <button 
+              @click="addToCart(selectedProduct)"
+              class="w-full bg-platinum hover:bg-champagne text-obsidian hover:text-obsidian py-4 rounded-lg text-xs font-semibold tracking-[0.2em] uppercase transition-colors"
+            >
+              ADD TO BAG
+            </button>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- VIEW: CHECKOUT -->
+    <template x-if="currentView === 'checkout'">
+      <div class="max-w-3xl mx-auto px-6 pt-32 pb-24 font-sans animate-[fadeIn_0.5s_ease_forwards] space-y-8">
+        <h2 class="font-serif text-2xl font-normal uppercase tracking-wide text-platinum text-center">Atelier Secure Checkout</h2>
+
+        <div class="bg-slateSurface border border-white/5 p-6 rounded-2xl space-y-6 shadow-luxury">
+          <div>
+            <h3 class="text-xs font-normal uppercase tracking-widest text-platinum mb-4 font-serif">1. Shipping Destination Address</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <input type="text" placeholder="FULL NAME" class="bg-obsidian border border-white/10 text-platinum text-xs p-3 rounded focus:ring-1 focus:ring-champagne" value="Eleanor Vance" />
+              <input type="text" placeholder="PHONE" class="bg-obsidian border border-white/10 text-platinum text-xs p-3 rounded focus:ring-1 focus:ring-champagne" value="+1 555-019-2834" />
+              <input type="text" placeholder="ADDRESS LINE 1" class="bg-obsidian border border-white/10 text-platinum text-xs p-3 rounded col-span-2 focus:ring-1 focus:ring-champagne" value="458 Park Avenue" />
+              <input type="text" placeholder="CITY" class="bg-obsidian border border-white/10 text-platinum text-xs p-3 rounded focus:ring-1 focus:ring-champagne" value="New York" />
+              <input type="text" placeholder="POSTAL CODE" class="bg-obsidian border border-white/10 text-platinum text-xs p-3 rounded focus:ring-1 focus:ring-champagne" value="10022" />
+            </div>
+          </div>
+
+          <div class="border-t border-white/5 pt-6">
+            <h3 class="text-xs font-normal uppercase tracking-widest text-platinum mb-4 font-serif">2. Credit Card Details</h3>
+            <input type="text" placeholder="CARD NUMBER (STRIPE DEMO)" class="bg-obsidian border border-white/10 text-platinum text-xs p-3 rounded w-full mb-3 focus:ring-1 focus:ring-champagne" value="4242 4242 4242 4242" />
+            <div class="grid grid-cols-2 gap-4">
+              <input type="text" placeholder="MM/YY" class="bg-obsidian border border-white/10 text-platinum text-xs p-3 rounded focus:ring-1 focus:ring-champagne" value="12/29" />
+              <input type="text" placeholder="CVC" class="bg-obsidian border border-white/10 text-platinum text-xs p-3 rounded focus:ring-1 focus:ring-champagne" value="123" />
+            </div>
+          </div>
+
+          <div class="border-t border-white/5 pt-4 flex flex-col items-center gap-4">
+            <div class="text-sm font-semibold text-platinum" x-text="'Total Payment Due: $' + getCartTotal().toLocaleString()"></div>
+            <button 
+              @click="submitOrder()"
+              class="w-full bg-platinum hover:bg-champagne text-obsidian hover:text-obsidian py-4 rounded-lg text-xs font-semibold tracking-[0.2em] uppercase transition-colors"
+            >
+              AUTHORIZE AND PROCESS ORDER
+            </button>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- VIEW: CUSTOMER DASHBOARD -->
+    <template x-if="currentView === 'dashboard'">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 pt-32 pb-24 font-sans flex flex-col md:flex-row gap-12 animate-[fadeIn_0.5s_ease_forwards]">
+        
+        <aside class="w-full md:w-64 flex-shrink-0">
+          <div class="bg-slateSurface border border-white/5 rounded-2xl p-6 text-center space-y-4 shadow-luxury">
+            <img :src="user ? user.avatar : 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80'" class="w-20 h-20 rounded-full border border-primary object-cover mx-auto" />
+            <div>
+              <h3 class="font-serif text-md font-normal uppercase tracking-wider text-platinum" x-text="user ? user.fullName : 'Guest Profile'"></h3>
+              <p class="text-[10px] text-titanium uppercase tracking-widest font-semibold" x-text="user ? user.role : 'customer'"></p>
+            </div>
+
+            <div class="border-t border-white/5 pt-4 flex flex-col gap-2">
+              <button @click="activeTab = 'orders'" class="flex items-center gap-3 p-3 rounded-lg text-xs font-semibold uppercase tracking-wider text-left" :class="activeTab === 'orders' ? 'bg-primary/10 text-primary' : 'text-titanium'">My Orders</button>
+              <button @click="activeTab = 'wishlist'" class="flex items-center gap-3 p-3 rounded-lg text-xs font-semibold uppercase tracking-wider text-left" :class="activeTab === 'wishlist' ? 'bg-primary/10 text-primary' : 'text-titanium'">Wishlist</button>
+              <button @click="activeTab = 'profile'" class="flex items-center gap-3 p-3 rounded-lg text-xs font-semibold uppercase tracking-wider text-left" :class="activeTab === 'profile' ? 'bg-primary/10 text-primary' : 'text-titanium'">Details</button>
+            </div>
+          </div>
+        </aside>
+
+        <main class="flex-grow bg-slateSurface border border-white/5 rounded-2xl p-6 md:p-8 shadow-luxury text-platinum">
+          <template x-if="activeTab === 'orders'">
+            <div class="space-y-6">
+              <h2 class="font-serif text-xl font-normal uppercase tracking-wider border-b border-white/5 pb-3">Purchase Log History</h2>
+              <div class="border border-white/5 bg-obsidian rounded-xl p-6 space-y-4">
+                <div class="flex justify-between items-center border-b border-white/5 pb-3">
+                  <div>
+                    <p class="text-xs font-bold text-platinum">GG-981240</p>
+                    <p class="text-[10px] text-titanium mt-1">Order placed: 2026-07-16</p>
+                  </div>
+                  <span class="bg-green-950/20 text-green-400 border border-green-950/30 px-3 py-1 rounded-full text-[10px] font-semibold uppercase">Shipped</span>
+                </div>
+                <div class="flex items-center gap-4">
+                  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPlTKlFbtjogeBjvDmrUeyv6a_a5DpKMSR7Gh4Wc8d2cR6TYC1R19ZcDqBkvAyE4ktlJ3iM69ko3G8DhC8d_ZLuzNZ4zTTdGlp7zSAy-PtGKqHAdoBlRLpdxziPKxUWQk8YFk_DhjmqdADcZG4B2W-f9WSZPotf00wVqz0hKbknqbkgIQkLTRqq6ge3ZHwuLb6V9s27iizwn-hXWzJleA1rhuvwTLtH4EzWJxDs3bPv55KLcxoPVDC6kCrvVsmCGmOocGxWtPwwig" class="w-12 h-16 object-cover bg-slateSurface border border-white/5 rounded" />
+                  <div>
+                    <p class="text-xs font-bold text-platinum">Geometric Signet Ring</p>
+                    <p class="text-[10px] text-titanium mt-1">Quantity: 1 | Price: $1,250</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+
+          <template x-if="activeTab === 'wishlist'">
+            <div class="space-y-6">
+              <h2 class="font-serif text-xl font-normal uppercase tracking-wider border-b border-white/5 pb-3">Your Wishlist Selection</h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <template x-for="pId in wishlist" :key="pId">
+                  <div class="flex gap-4 border border-white/5 bg-obsidian p-4 rounded-xl">
+                    <img :src="getProductById(pId).images[0]" class="w-16 h-20 object-cover bg-slateSurface border border-white/5 rounded" />
+                    <div>
+                      <h4 class="font-serif text-sm font-normal uppercase tracking-wide text-platinum" x-text="getProductById(pId).title"></h4>
+                      <p class="text-xs font-semibold text-champagne mt-2" x-text="'$' + getProductById(pId).price.toLocaleString()"></p>
+                    </div>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </template>
+
+          <template x-if="activeTab === 'profile'">
+            <div class="space-y-6">
+              <h2 class="font-serif text-xl font-normal uppercase tracking-wider border-b border-white/5 pb-3">Account Information</h2>
+              <div class="space-y-4 max-w-md">
+                <div>
+                  <label class="block text-[10px] text-titanium font-semibold uppercase mb-1">Display Name</label>
+                  <input type="text" :value="user ? user.fullName : ''" class="bg-obsidian border border-white/10 text-platinum text-xs p-3 rounded w-full focus:ring-1 focus:ring-champagne" />
+                </div>
+                <div>
+                  <label class="block text-[10px] text-titanium font-semibold uppercase mb-1">Email Address</label>
+                  <input type="text" :value="user ? user.email : ''" class="bg-obsidian/50 border border-white/10 text-xs p-3 rounded w-full text-titanium" disabled />
+                </div>
+              </div>
+            </div>
+          </template>
+        </main>
+
+      </div>
+    </template>
+
+    <!-- VIEW: ADMIN DASHBOARD -->
+    <template x-if="currentView === 'admin'">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 pt-32 pb-24 font-sans space-y-12 animate-[fadeIn_0.5s_ease_forwards] text-platinum">
+        
+        <div>
+          <h1 class="font-serif text-3xl font-normal uppercase tracking-wider text-platinum">Analytics Atelier Dashboard</h1>
+          <p class="text-xs text-titanium mt-1 font-medium tracking-wider uppercase">Fine jewelry control center</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div class="bg-slateSurface border border-white/5 rounded-2xl p-6 flex items-center justify-between shadow-luxury">
+            <div>
+              <p class="text-[10px] text-titanium font-semibold uppercase tracking-wider">Total Revenue</p>
+              <h3 class="text-xl font-bold text-champagne font-sans mt-2">$284,500</h3>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+              <i data-lucide="dollar-sign" class="w-5 h-5"></i>
+            </div>
+          </div>
+          <div class="bg-slateSurface border border-white/5 rounded-2xl p-6 flex items-center justify-between shadow-luxury">
+            <div>
+              <p class="text-[10px] text-titanium font-semibold uppercase tracking-wider">Total Orders</p>
+              <h3 class="text-xl font-bold text-platinum font-sans mt-2">142 Sales</h3>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+              <i data-lucide="trending-up" class="w-5 h-5"></i>
+            </div>
+          </div>
+          <div class="bg-slateSurface border border-white/5 rounded-2xl p-6 flex items-center justify-between shadow-luxury">
+            <div>
+              <p class="text-[10px] text-titanium font-semibold uppercase tracking-wider">Active Customers</p>
+              <h3 class="text-xl font-bold text-platinum font-sans mt-2">89 Users</h3>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+              <i data-lucide="users" class="w-5 h-5"></i>
+            </div>
+          </div>
+          <div class="bg-slateSurface border border-white/5 rounded-2xl p-6 flex items-center justify-between shadow-luxury">
+            <div>
+              <p class="text-[10px] text-titanium font-semibold uppercase tracking-wider">Inventory Alerts</p>
+              <h3 class="text-xl font-bold text-platinum font-sans mt-2">0 Low Stock</h3>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+              <i data-lucide="package-check" class="w-5 h-5"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Catalog creation form -->
+        <div class="bg-slateSurface border border-white/5 rounded-2xl p-6 space-y-6 shadow-luxury">
+          <div class="flex justify-between items-center border-b border-white/5 pb-4">
+            <h3 class="font-serif text-lg font-normal uppercase tracking-wider">Catalog Product CRUD Manager</h3>
+            <button @click="showAdminAddForm = !showAdminAddForm" class="bg-platinum hover:bg-champagne hover:text-obsidian text-obsidian px-4 py-2 text-xs uppercase tracking-wider font-semibold rounded-lg transition-colors">
+              + New Piece
+            </button>
+          </div>
+
+          <div x-show="showAdminAddForm" class="bg-obsidian p-4 rounded-xl border border-white/5 space-y-4 animate-scale-up">
+            <div class="grid grid-cols-3 gap-4">
+              <input type="text" placeholder="PRODUCT TITLE" x-model="adminNewProduct.title" class="bg-slateSurface border border-white/10 text-platinum text-xs p-3 rounded focus:ring-1 focus:ring-champagne" />
+              <input type="number" placeholder="PRICE ($)" x-model="adminNewProduct.price" class="bg-slateSurface border border-white/10 text-platinum text-xs p-3 rounded focus:ring-1 focus:ring-champagne" />
+              <input type="text" placeholder="SKU CODE" x-model="adminNewProduct.sku" class="bg-slateSurface border border-white/10 text-platinum text-xs p-3 rounded focus:ring-1 focus:ring-champagne" />
+            </div>
+            <button @click="addNewAdminProduct()" type="button" class="bg-platinum hover:bg-champagne text-obsidian px-6 py-2 text-xs uppercase tracking-wider rounded font-semibold transition-colors">Create Product</button>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="border-b border-white/5 bg-obsidian text-platinum">
+                  <th class="py-3 px-4 text-titanium font-serif uppercase tracking-widest text-[10px]">Piece</th>
+                  <th class="py-3 px-4 text-titanium font-serif uppercase tracking-widest text-[10px]">SKU</th>
+                  <th class="py-3 px-4 text-titanium font-serif uppercase tracking-widest text-[10px]">Price</th>
+                  <th class="py-3 px-4 text-titanium font-serif uppercase tracking-widest text-[10px]">Stock</th>
+                  <th class="py-3 px-4 text-titanium font-serif uppercase tracking-widest text-[10px]">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <template x-for="p in products" :key="p._id">
+                  <tr class="border-b border-white/5 hover:bg-obsidian/30 transition-colors">
+                    <td class="py-3 px-4 font-serif text-sm text-platinum" x-text="p.title"></td>
+                    <td class="py-3 px-4 font-mono text-titanium" x-text="p.sku"></td>
+                    <td class="py-3 px-4 font-semibold text-champagne font-sans" x-text="'$' + p.price.toLocaleString()"></td>
+                    <td class="py-3 px-4 text-titanium font-semibold" x-text="p.stock"></td>
+                    <td class="py-3 px-4">
+                      <button @click="removeAdminProduct(p._id)" class="text-red-400 hover:text-red-300 transition-colors hover:underline">Delete</button>
+                    </td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </template>
+
+    <!-- VIEW: STATIC POLICY -->
+    <template x-if="currentView === 'about'">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 pt-32 pb-24 font-sans space-y-20 animate-[fadeIn_0.5s_ease_forwards] text-platinum">
+        <div class="text-center max-w-xl mx-auto space-y-4">
+          <span class="text-xs tracking-[0.3em] font-semibold text-champagne uppercase">Est. 1992</span>
+          <h1 class="font-serif text-4xl md:text-5xl font-normal uppercase tracking-wide text-platinum">Our Brand Story</h1>
+          <p class="text-sm text-titanium">Crafting fine metals, setting exceptional stones, and honoring human history through modern jewelry.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-slateSurface border border-white/5 shadow-luxury">
+            <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover opacity-80" />
+          </div>
+          <div class="space-y-6">
+            <h2 class="font-serif text-2xl md:text-3xl font-normal uppercase tracking-wider text-platinum">The London Atelier</h2>
+            <p class="text-xs text-champagne tracking-widest uppercase font-semibold">12 Bond Street, London, W1S 1AR</p>
+            <p class="text-sm text-titanium leading-relaxed font-sans">
+              Every Golden Glow jewelry piece begins its journey in our private Bond Street studio. Our master craftsmen combine age-old filigree drawing processes with modern multi-dimensional casting to ensure structural integrity and a shimmering gold finish.
+            </p>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- VIEW: JOURNAL/BLOGS -->
+    <template x-if="currentView === 'blogs'">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 pt-32 pb-24 font-sans space-y-12 animate-[fadeIn_0.5s_ease_forwards] text-platinum">
+        <div class="text-center max-w-xl mx-auto space-y-4">
+          <span class="text-xs tracking-[0.3em] font-semibold text-champagne uppercase">The Journal</span>
+          <h1 class="font-serif text-4xl md:text-5xl font-normal uppercase tracking-wide text-platinum">Atelier Diaries</h1>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div class="group cursor-pointer flex flex-col gap-4">
+            <div class="aspect-[16/10] rounded-2xl overflow-hidden bg-slateSurface border border-white/5 relative">
+              <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <h3 class="font-serif text-lg font-normal uppercase tracking-wider text-platinum group-hover:text-champagne transition-colors">How to Care for Your 18K Gold Jewelry</h3>
+            <p class="text-xs text-titanium">Simple daily tips, cleaning routines, and storage recommendations to maintain the sparkling luster of fine yellow gold.</p>
+          </div>
+        </div>
+      </div>
+    </template>
+
+  </div>
+
+  <!-- Shopping Cart Sliding Drawer -->
+  <div 
+    x-show="isCartOpen" 
+    x-cloak
+    class="fixed inset-0 z-[100] flex justify-end"
+  >
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" @click="isCartOpen = false"></div>
+    <div class="relative w-full max-w-md bg-surface border-l border-white/5 h-full shadow-2xl flex flex-col justify-between z-10 animate-slide-up text-platinum">
+      
+      <div class="p-6 border-b border-white/5 flex items-center justify-between">
+        <h3 class="font-serif text-lg font-normal uppercase tracking-wider text-platinum flex items-center gap-2">Your Atelier Bag</h3>
+        <button @click="isCartOpen = false" class="w-8 h-8 rounded-full bg-obsidian hover:bg-slateSurface border border-white/10 flex items-center justify-center text-platinum transition-colors">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="flex-grow overflow-y-auto p-6 space-y-4">
+        <template x-if="cart.length === 0">
+          <div class="h-full flex flex-col items-center justify-center text-center gap-4 py-20">
+            <p class="font-serif text-md font-normal text-platinum">Your bag is empty</p>
+            <button @click="isCartOpen = false; currentView = 'shop'" class="bg-platinum text-obsidian px-6 py-3 text-xs tracking-wider uppercase font-semibold hover:bg-champagne transition-colors rounded-lg">Start Shopping</button>
+          </div>
+        </template>
+
+        <template x-for="item in cart" :key="item.product._id">
+          <div class="flex gap-4 border-b border-white/5 pb-4">
+            <img :src="item.product.images[0]" class="w-16 h-20 object-cover bg-obsidian border border-white/5 rounded-lg" />
+            <div class="flex-grow flex flex-col justify-between">
+              <div class="flex justify-between items-start">
+                <h4 class="font-serif text-sm font-normal text-platinum line-clamp-1" x-text="item.product.title"></h4>
+                <button @click="removeCart(item.product._id)" class="text-titanium hover:text-red-400">
+                  <i data-lucide="trash-2" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <div class="flex justify-between items-center mt-2">
+                <span class="text-xs text-titanium" x-text="'Qty: ' + item.quantity"></span>
+                <span class="text-sm font-semibold text-champagne font-sans" x-text="'$' + (item.product.price * item.quantity).toLocaleString()"></span>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+
+      <div class="p-6 border-t border-white/5 bg-obsidian space-y-4" x-show="cart.length > 0">
+        <div class="flex justify-between text-sm font-semibold text-platinum">
+          <span>Bag Total</span>
+          <span class="text-champagne font-sans font-bold" x-text="'$' + getCartTotal().toLocaleString()"></span>
+        </div>
+        <button @click="isCartOpen = false; currentView = 'checkout'" class="w-full bg-platinum hover:bg-champagne text-obsidian py-4 rounded-lg text-xs font-semibold tracking-[0.2em] uppercase transition-colors">
+          PROCEED TO CHECKOUT
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <footer class="bg-slateSurface pt-20 pb-10 border-t border-white/5" x-show="currentView === 'home' || currentView === 'shop' || currentView === 'about' || currentView === 'blogs'">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-12 text-xs">
+      <div class="space-y-4">
+        <span class="font-serif text-2xl text-platinum font-normal uppercase tracking-widest">Golden Glow</span>
+        <p class="text-titanium leading-relaxed font-sans">Crafting timeless elegance since 1992. Every piece is meticulously handmade in our London atelier with ethically sourced precious metals.</p>
+      </div>
+      <div>
+        <h4 class="font-serif uppercase tracking-widest text-platinum mb-6 text-xs font-normal">Collections</h4>
+        <ul class="space-y-3 text-titanium">
+          <li><a href="#" @click.prevent="selectedCategory = 'Rings'; currentView = 'shop'" class="hover:text-champagne transition-colors">Rings</a></li>
+          <li><a href="#" @click.prevent="selectedCategory = 'Earrings'; currentView = 'shop'" class="hover:text-champagne transition-colors">Earrings</a></li>
+          <li><a href="#" @click.prevent="selectedCategory = 'Necklaces'; currentView = 'shop'" class="hover:text-champagne transition-colors">Necklaces</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-serif uppercase tracking-widest text-platinum mb-6 text-xs font-normal">Information</h4>
+        <ul class="space-y-3 text-titanium">
+          <li><a href="#" @click.prevent="currentView = 'about'" class="hover:text-champagne transition-colors">Brand Story</a></li>
+          <li><a href="#" @click.prevent="currentView = 'about'" class="hover:text-champagne transition-colors">Atelier Care</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-serif uppercase tracking-widest text-platinum mb-6 text-xs font-normal">Boutique News</h4>
+        <p class="text-titanium mb-4 leading-relaxed">Join the Golden Circle for preview collections notifications.</p>
+        <button @click="alert('Thank you for subscribing!')" class="bg-platinum hover:bg-champagne text-obsidian py-3 px-6 uppercase tracking-wider font-semibold rounded-lg w-full transition-colors">Join Now</button>
+      </div>
+    </div>
+    <div class="mt-16 border-t border-white/5 pt-8 max-w-7xl mx-auto px-6 md:px-12 text-center text-[10px] text-titanium/50">
+      © 2026 Golden Glow. Handcrafted Excellence. All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- Alert System node overlay -->
+  <div class="fixed bottom-6 right-6 z-[100] flex flex-col gap-3 max-w-sm w-full" x-data="{ alerts: [] }" @show-alert.window="alerts.push($event.detail); setTimeout(() => alerts.shift(), 4000)">
+    <template x-for="al in alerts" :key="al.id">
+      <div class="flex items-center justify-between p-4 rounded-lg shadow-luxury border glass bg-slateSurface/90 border-champagne/45 animate-slide-up text-platinum">
+        <div class="flex items-center gap-3">
+          <i data-lucide="check-circle" class="w-5 h-5 text-champagne"></i>
+          <span class="text-xs font-medium text-platinum" x-text="al.msg"></span>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <script>
+    // Alpine app logic
+    function boutiqueApp() {
+      return {
+        currentView: 'home',
+        activeTab: 'orders',
+        isScrolled: false,
+        isMobileMenuOpen: false,
+        searchOpen: false,
+        isCartOpen: false,
+        searchQuery: '',
+        selectedCategory: 'All',
+        priceCap: 10000,
+        sortBy: 'newest',
+        selectedProduct: null,
+        wishlist: [],
+        cart: [],
+        showAdminAddForm: false,
+        adminNewProduct: { title: '', price: '', sku: '' },
+        heroCoords: { x: 0, y: 0, active: false },
+
+        updateHeroCoords(event) {
+          const rect = event.currentTarget.getBoundingClientRect();
+          this.heroCoords.x = Math.round(event.clientX - rect.left);
+          this.heroCoords.y = Math.round(event.clientY - rect.top);
+          this.heroCoords.active = true;
+        },
+
+        categories: ['Rings', 'Earrings', 'Necklaces', 'Bracelets', 'Bangles'],
+        
+        user: {
+          clerkId: 'user_customer_67890',
+          fullName: 'Eleanor Vance',
+          email: 'buyer@goldenglow.com',
+          avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80',
+          role: 'customer'
+        },
+
+        products: [
+          { _id: 'prod_1', title: 'Geometric Signet Ring', category: 'Rings', price: 1250, material: '18K Yellow Gold', weight: '5.2g', images: ['https://lh3.googleusercontent.com/aida-public/AB6AXuDPlTKlFbtjogeBjvDmrUeyv6a_a5DpKMSR7Gh4Wc8d2cR6TYC1R19ZcDqBkvAyE4ktlJ3iM69ko3G8DhC8d_ZLuzNZ4zTTdGlp7zSAy-PtGKqHAdoBlRLpdxziPKxUWQk8YFk_DhjmqdADcZG4B2W-f9WSZPotf00wVqz0hKbknqbkgIQkLTRqq6ge3ZHwuLb6V9s27iizwn-hXWzJleA1rhuvwTLtH4EzWJxDs3bPv55KLcxoPVDC6kCrvVsmCGmOocGxWtPwwig'], sku: 'GG-RG-001', stock: 12, description: 'Minimalist architecture gold signet ring cast in solid 18K Yellow Gold.' },
+          { _id: 'prod_2', title: 'Floating Pearl Choker', category: 'Necklaces', price: 890, material: '14K Rose Gold', weight: '3.8g', images: ['https://lh3.googleusercontent.com/aida-public/AB6AXuCWLBl2l6Tz-HYvqOA_Bo3lYks5rPPUfQOEinnEj9cQDrGDhCUJKGzGnowSImR1R7E7V1o4BcODUqSGo6oR5gqQLnUB-SBtpNvnZsDGlbIoFxfq6YIMPgyGkcRV-ZxWj4T0NDmIa8fo0BVcs8u8AcbKPYfeI-Hrc01vPBaJnVFNQcZSod6TPi-5PviNZOlcXXrhq-U3ShyXkcDVqSECsaDe4pgPy58fufjZlhRpB40V1a3JF3bu00CuGrEnt1zaMpPdUKDFyRK6llY'], sku: 'GG-NK-002', stock: 8, description: 'Delicate gold chain holding a single premium saltwater Akoya pearl.' },
+          { _id: 'prod_3', title: 'Filigree Gold Hoops', category: 'Earrings', price: 1400, material: '18K Yellow Gold', weight: '6.5g', images: ['https://lh3.googleusercontent.com/aida-public/AB6AXuAlhgs2Cb6GAs-lnJ5MXEykScInAFmBtVQbVaQrITHVcTuBH9nQwL8_Tt3eBe4qJkd3o2yEDUGXPLZPybxFUO4flX6mn2Mv7Rqi7nSwo14pUrbgI-7TvWbaMs4z94ejnBS-QylFuVXJcr-RL5-q0OXQs7buBPcbn_OAF3y4FZYC4hiHU4OypSWEKqAp1XlS4hYx_WkG3-eneKYSY8F5p_KY2kieKDajBlL7rFhclV5ZmmfgzlFyHVP00z4hYjHTuzwihjk-OOlCnqA'], sku: 'GG-ER-003', stock: 5, description: 'Handcrafted hoop earrings featuring intricate gold filigree curvatures.' },
+          { _id: 'prod_4', title: 'Architectural Gold Bangle', category: 'Bracelets', price: 2100, material: '18K Yellow Gold', weight: '12.4g', images: ['https://lh3.googleusercontent.com/aida-public/AB6AXuBb5TFOhzutiWC1yEPv7IwIgA8Mrfr5MQqk59Oh26IMFn3n4_jgn5YNwgmEeoBfuR35HrQvzLnaSfRHFqua1wao5SlovzK771t6mDgzDtvucAU78WHLqXA3RTpVqqAe0O-NNsxVjix5oDdOujccTWW_Da-Mk5jw_noUjB6fPpULUPa7BIKYYNQgwdv5RvJ4vRDrPTgncm728IkxM_x6FUZrg5qRGrnnouuvc7pLJaS3ZAvC7iB-59zXEIhHoC4_tMP_kFyhSxXMp7U'], sku: 'GG-BR-004', stock: 2, description: 'Sleek yellow gold bangle featuring a hidden hinge closure.' }
+        ],
+
+        initApp() {
+          window.addEventListener('scroll', () => {
+            this.isScrolled = window.scrollY > 40;
+          });
+          // Render Lucide icons on Alpine state change
+          this.$watch('currentView', () => {
+            this.$nextTick(() => lucide.createIcons());
+          });
+          this.$watch('isMobileMenuOpen', () => {
+            this.$nextTick(() => lucide.createIcons());
+          });
+          this.$watch('isCartOpen', () => {
+            this.$nextTick(() => lucide.createIcons());
+          });
+          this.$nextTick(() => lucide.createIcons());
+        },
+
+        login(role) {
+          if (role === 'customer') {
+            this.user = {
+              clerkId: 'user_customer_67890',
+              fullName: 'Eleanor Vance',
+              email: 'buyer@goldenglow.com',
+              avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80',
+              role: 'customer'
+            };
+          } else {
+            this.user = {
+              clerkId: 'user_admin_12345',
+              fullName: 'Alexander Thorne',
+              email: 'admin@goldenglow.com',
+              avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80',
+              role: 'admin'
+            };
+          }
+          this.triggerAlert("Logged in as " + this.user.fullName);
+        },
+
+        logout() {
+          this.user = null;
+          this.currentView = 'home';
+          this.triggerAlert("Logged out successfully");
+        },
+
+        filteredProducts() {
+          let list = [...this.products];
+          if (this.selectedCategory !== 'All') {
+            list = list.filter(p => p.category === this.selectedCategory);
+          }
+          if (this.searchQuery.trim()) {
+            list = list.filter(p => p.title.toLowerCase().includes(this.searchQuery.toLowerCase()));
+          }
+          list = list.filter(p => p.price <= this.priceCap);
+
+          if (this.sortBy === 'price_asc') list.sort((a,b) => a.price - b.price);
+          if (this.sortBy === 'price_desc') list.sort((a,b) => b.price - a.price);
+          return list;
+        },
+
+        viewProduct(id) {
+          this.selectedProduct = this.products.find(p => p._id === id);
+          this.currentView = 'product-detail';
+        },
+
+        toggleWish(id) {
+          if (this.wishlist.includes(id)) {
+            this.wishlist = this.wishlist.filter(wId => wId !== id);
+            this.triggerAlert("Removed from Wishlist");
+          } else {
+            this.wishlist.push(id);
+            this.triggerAlert("Added to Wishlist");
+          }
+        },
+
+        addToCart(product) {
+          const existing = this.cart.find(item => item.product._id === product._id);
+          if (existing) {
+            existing.quantity++;
+          } else {
+            this.cart.push({ product, quantity: 1 });
+          }
+          this.triggerAlert("Added " + product.title + " to Bag");
+        },
+
+        removeCart(id) {
+          this.cart = this.cart.filter(item => item.product._id !== id);
+          this.triggerAlert("Removed from Bag");
+        },
+
+        getCartTotal() {
+          return this.cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+        },
+
+        getProductById(id) {
+          return this.products.find(p => p._id === id) || {};
+        },
+
+        submitOrder() {
+          this.cart = [];
+          this.currentView = 'dashboard';
+          this.activeTab = 'orders';
+          this.triggerAlert("Order submitted successfully!");
+        },
+
+        addNewAdminProduct() {
+          if (this.adminNewProduct.title && this.adminNewProduct.price) {
+            const added = {
+              _id: 'prod_' + Date.now(),
+              title: this.adminNewProduct.title,
+              category: 'Rings',
+              price: Number(this.adminNewProduct.price),
+              material: '18K Yellow Gold',
+              weight: '4.5g',
+              images: ['https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80'],
+              sku: this.adminNewProduct.sku || 'GG-RG-MOCK',
+              stock: 10,
+              description: 'Luxury catalog item'
+            };
+            this.products.unshift(added);
+            this.adminNewProduct = { title: '', price: '', sku: '' };
+            this.showAdminAddForm = false;
+            this.triggerAlert("Product created in catalog!");
+          }
+        },
+
+        removeAdminProduct(id) {
+          this.products = this.products.filter(p => p._id !== id);
+          this.triggerAlert("Product deleted from catalog!");
+        },
+
+        triggerAlert(msg) {
+          window.dispatchEvent(new CustomEvent('show-alert', { detail: { id: Date.now(), msg } }));
+          setTimeout(() => lucide.createIcons(), 50);
+        }
+      }
+    }
+  </script>
+  <script>
+    // Scroll reveal GSAP initializations
+    document.addEventListener("DOMContentLoaded", () => {
+      // Register GSAP ScrollTrigger
+      gsap.registerPlugin(ScrollTrigger);
+
+      const title = document.getElementById("story-reveal-title");
+      if (title) {
+        ScrollTrigger.refresh();
+
+        const words = title.querySelectorAll('.word');
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: title,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+            once: true
+          }
+        });
+
+        // 1. Container rotation
+        tl.fromTo(
+          title,
+          { transformOrigin: '0% 50%', rotate: 3 },
+          {
+            rotate: 0,
+            duration: 0.85,
+            ease: 'power2.out'
+          },
+          0
+        );
+
+        // 2. Word opacity stagger
+        tl.fromTo(
+          words,
+          { opacity: 0.1 },
+          {
+            opacity: 1,
+            stagger: 0.05,
+            duration: 0.85,
+            ease: 'power2.out'
+          },
+          0
+        );
+
+        // 3. Word blur stagger
+        tl.fromTo(
+          words,
+          { filter: 'blur(4px)' },
+          {
+            filter: 'blur(0px)',
+            stagger: 0.05,
+            duration: 0.85,
+            ease: 'power2.out'
+          },
+          0
+        );
+
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+        }, 150);
+      }
+    });
+  </script>
+  <script>
+    // CursorGrid background lattice canvas animation
+    document.addEventListener("DOMContentLoaded", () => {
+      const canvas = document.getElementById("hero-cursor-grid");
+      if (!canvas) return;
+
+      const container = canvas.parentElement;
+      const ctx = canvas.getContext("2d");
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      const cellSize = 60;
+      const color = "#c9b067";
+      const radius = 180;
+      const lineWidth = 0.8;
+      const maxOpacity = 0.35;
+      const gridOpacity = 0.03;
+
+      let cols = 0;
+      let rows = 0;
+      let offX = 0;
+      let offY = 0;
+      let alphas = new Float32Array(0);
+      let touched = new Float64Array(0);
+      let w = 0;
+      let h = 0;
+      let running = false;
+      let lastFrame = 0;
+      let raf = 0;
+
+      const rebuild = () => {
+        w = container.offsetWidth;
+        h = container.offsetHeight;
+        canvas.width = Math.max(1, Math.round(w * dpr));
+        canvas.height = Math.max(1, Math.round(h * dpr));
+        canvas.style.width = w + "px";
+        canvas.style.height = h + "px";
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        cols = Math.ceil(w / cellSize) + 1;
+        rows = Math.ceil(h / cellSize) + 1;
+        offX = (w - cols * cellSize) / 2;
+        offY = (h - rows * cellSize) / 2;
+        alphas = new Float32Array(cols * rows);
+        touched = new Float64Array(cols * rows);
+      };
+
+      const cellCenter = i => {
+        const cx = offX + (i % cols) * cellSize + cellSize / 2;
+        const cy = offY + Math.floor(i / cols) * cellSize + cellSize / 2;
+        return [cx, cy];
+      };
+
+      const hexToRgb = hex => {
+        const h = hex.replace('#', '');
+        const v = h.length === 3 ? h.split('').map(c => c + c).join('') : h;
+        const num = parseInt(v, 16);
+        return [(num >> 16) & 255, (num >> 8) & 255, num & 255];
+      };
+
+      const [cr, cg, cb] = hexToRgb(color);
+
+      const energize = (x, y) => {
+        const r = Math.max(radius, 1);
+        const now = performance.now();
+        const minCol = Math.max(0, Math.floor((x - r - offX) / cellSize));
+        const maxCol = Math.min(cols - 1, Math.floor((x + r - offX) / cellSize));
+        const minRow = Math.max(0, Math.floor((y - r - offY) / cellSize));
+        const maxRow = Math.min(rows - 1, Math.floor((y + r - offY) / cellSize));
+        for (let cRow = minRow; cRow <= maxRow; cRow++) {
+          for (let cCol = minCol; cCol <= maxCol; cCol++) {
+            const i = cRow * cols + cCol;
+            const [cx, cy] = cellCenter(i);
+            const dist = Math.hypot(cx - x, cy - y);
+            if (dist > r) continue;
+            // smooth curve: t * t * (3 - 2 * t)
+            const t = 1 - dist / r;
+            const level = t * t * (3 - 2 * t) * maxOpacity;
+            if (level > alphas[i]) {
+              alphas[i] = level;
+              touched[i] = now;
+            } else if (level > 0) {
+              touched[i] = now;
+            }
+          }
+        }
+      };
+
+      const draw = now => {
+        const dt = Math.min(now - lastFrame, 50);
+        lastFrame = now;
+        ctx.clearRect(0, 0, w, h);
+
+        if (gridOpacity > 0) {
+          ctx.strokeStyle = `rgba(${cr}, ${cg}, ${cb}, ${gridOpacity})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          for (let cCol = 0; cCol <= cols; cCol++) {
+            const x = Math.round(offX + cCol * cellSize) + 0.5;
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, h);
+          }
+          for (let cRow = 0; cRow <= rows; cRow++) {
+            const y = Math.round(offY + cRow * cellSize) + 0.5;
+            ctx.moveTo(0, y);
+            ctx.lineTo(w, y);
+          }
+          ctx.stroke();
+        }
+
+        let anyVisible = false;
+        const fadeStep = dt / 800; // fadeDuration: 800ms
+        const half = cellSize / 2;
+
+        for (let i = 0; i < alphas.length; i++) {
+          let a = alphas[i];
+          if (a <= 0) continue;
+          if (now - touched[i] > 400) { // holdTime: 400ms
+            a = Math.max(0, a - fadeStep);
+            alphas[i] = a;
+            if (a <= 0) continue;
+          }
+          anyVisible = true;
+
+          const [cx, cy] = cellCenter(i);
+          const gradient = ctx.createRadialGradient(cx, cy, half * 0.1, cx, cy, cellSize);
+          gradient.addColorStop(0, `rgba(${cr}, ${cg}, ${cb}, ${a})`);
+          gradient.addColorStop(1, `rgba(${cr}, ${cg}, ${cb}, 0)`);
+
+          const x = cx - half + 0.5;
+          const y = cy - half + 0.5;
+          const s = cellSize - 1;
+
+          ctx.beginPath();
+          ctx.rect(x, y, s, s);
+          ctx.strokeStyle = gradient;
+          ctx.lineWidth = lineWidth;
+          ctx.stroke();
+        }
+
+        if (anyVisible) {
+          raf = requestAnimationFrame(draw);
+        } else {
+          running = false;
+          if (gridOpacity <= 0) ctx.clearRect(0, 0, w, h);
+        }
+      };
+
+      const wake = () => {
+        if (running) return;
+        running = true;
+        lastFrame = performance.now();
+        raf = requestAnimationFrame(draw);
+      };
+
+      container.addEventListener("mousemove", e => {
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        energize(x, y);
+        wake();
+      });
+
+      window.addEventListener("resize", rebuild);
+      rebuild();
+      wake();
+    });
+  </script>
+</body>
+</html>

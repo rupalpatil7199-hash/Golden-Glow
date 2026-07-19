@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Golden Glow | Handcrafted Excellence</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                DEFAULT: '#c9b067', // Champagne gold
+                glow: '#d4af37',
+              },
+              surface: {
+                DEFAULT: '#14171d', // Slate surface
+                dim: '#0f1116',
+                bright: '#1f242e',
+                lowest: '#08090b', // Obsidian black
+                low: '#0d0f12',
+                container: '#1e232e',
+                high: '#272d3a',
+                highest: '#303746',
+              },
+              secondary: {
+                DEFAULT: '#a2a7af', // Titanium grey
+                text: '#82878f',
+              },
+              obsidian: '#08090b',
+              platinum: '#f8f9fa',
+              titanium: '#a2a7af',
+              champagne: '#c9b067',
+              slateSurface: '#14171d',
+              gold: '#c9b067',
+              luxuryBlack: '#08090b',
+              "on-surface": "#f8f9fa",
+              "secondary-fixed-dim": "#82878f",
+              "primary-container": "#c9b067"
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px"
+            },
+            spacing: {
+              "margin-desktop": "80px",
+              "container-max": "1440px",
+              "gutter": "24px",
+              "unit": "8px",
+              "margin-mobile": "20px"
+            },
+            fontFamily: {
+              serif: ['Tenor Sans', 'sans-serif'],
+              sans: ['Inter', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+  <style>
+        .glass {
+            background: rgba(20, 23, 29, 0.72);
+            backdrop-filter: blur(24px) saturate(140%);
+            -webkit-backdrop-filter: blur(24px) saturate(140%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar {
+          width: 6px;
+          height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+          background: #08090b;
+        }
+        ::-webkit-scrollbar-thumb {
+          background: rgba(162, 167, 175, 0.25);
+          border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: #c9b067;
+        }
+    </style>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-obsidian text-platinum font-sans selection:bg-primary/20 antialiased overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm transition-all duration-300" id="main-header">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary text-2xl md:hidden">menu</button>
+<nav class="hidden md:flex gap-8">
+<a class="text-primary font-bold font-label-md text-label-md transition-colors duration-300" href="#">Home</a>
+<a class="text-secondary font-label-md text-label-md hover:text-primary transition-colors duration-300" href="#shop">Shop</a>
+<a class="text-secondary font-label-md text-label-md hover:text-primary transition-colors duration-300" href="#collections">Collections</a>
+</nav>
+</div>
+<a class="font-display-lg-mobile text-display-lg-mobile md:text-headline-lg tracking-tighter text-primary" href="/">Golden Glow</a>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-secondary hover:text-primary transition-colors">search</button>
+<button class="material-symbols-outlined text-secondary hover:text-primary transition-colors">favorite</button>
+<div class="relative group cursor-pointer">
+<span class="material-symbols-outlined text-primary text-2xl">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-primary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
+</div>
+</header>
+
+<!-- Hero Section -->
+<section class="relative h-screen w-full flex items-center overflow-hidden bg-obsidian">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-[10s] scale-105 hover:scale-100 opacity-60" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAP1w5xsHLmQMi4xckzLDSnlRwmcsshiVE9jNa1kxPxANcBMmYZh0EsSs19JVIbJUP9bJ5UJn87s_paT_GOgepujYzSm_IuNIclOcyT5g5rBnQIxpxWK7UYic-5FWz87wU4sJoa_fHyQerQur56fAF8hS2EZa_4ipxdJ_FSZmpN3da2t0h22l6D74bLPmTA9_84mCJQpsnSyGssO78LHCnsia1cM0XTtNRCH16HV5f4FmCrYlk90An126X_Jibd7FQinLu8g_mFE_Q')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/45 to-transparent"></div>
+</div>
+<div class="relative z-10 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
+<div class="max-w-2xl text-platinum space-y-6">
+<span class="font-sans text-xs md:text-sm tracking-[0.3em] uppercase text-champagne block">New Heritage Collection</span>
+<h1 class="font-serif text-4xl md:text-6xl tracking-wide uppercase leading-tight">Artistry in Every <span class="italic text-champagne">Glow</span></h1>
+<p class="font-sans text-sm md:text-base text-titanium leading-relaxed max-w-lg">Experience the timeless elegance of handcrafted fine jewelry, designed for those who appreciate life's most precious moments.</p>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="bg-platinum text-obsidian hover:bg-champagne hover:text-obsidian px-10 py-4 font-sans text-xs font-bold tracking-[0.2em] uppercase rounded-lg transition-all duration-300 shadow-xl">SHOP THE COLLECTION</button>
+<button class="border border-white/10 text-platinum backdrop-blur-md px-10 py-4 font-sans text-xs font-bold tracking-[0.2em] uppercase hover:bg-white/5 transition-all duration-300 rounded-lg">OUR STORY</button>
+</div>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-60">
+<span class="font-sans text-[9px] tracking-[0.25em] text-platinum font-bold uppercase">SCROLL</span>
+<span class="material-symbols-outlined text-platinum">expand_more</span>
+</div>
+</section>
+
+<!-- Featured Collections (Glassmorphism Bento) -->
+<section class="py-24 md:py-32 bg-obsidian" id="collections">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="text-center mb-16 reveal">
+<span class="text-xs tracking-[0.25em] font-semibold text-champagne uppercase block mb-2">Curated Series</span>
+<h2 class="font-serif text-3xl md:text-4xl font-normal tracking-wider uppercase text-platinum mb-4">The Collections</h2>
+<p class="text-titanium max-w-xl mx-auto">Hand-curated selections that blend traditional craftsmanship with modern silhouettes.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter h-auto md:h-[700px]">
+<div class="md:col-span-8 relative group overflow-hidden reveal rounded-2xl border border-white/5 bg-slateSurface">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105 opacity-80" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB7ZgXK7gX_jZ_WDTtm7UCbroS8kZzVO3FHlU5qcOJ0asnPFsaWFmKp5VRFbsykjo3z2yDSLMF8hm3YpGsuVcouOFucmJQrJ2Ss6wcPz1VmIRlY_93aWFY7Mk3czD9JnXiwuUoPpPmhmyHcSU9UHl8qC2etfsLcXvkaw9s5auUOX9a94ezYFKtx1Wy_S0bsrcAPamkmgN_KUiOoaIReuHZUv5aAR1h30F5JN3fMcLJzMNtP0WrnNE25HWwA2czPuLE53Obreh0NhGE')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8 right-8 glass p-8 md:p-12 transition-transform duration-500 rounded-xl">
+<h3 class="font-serif text-xl tracking-wide uppercase text-platinum mb-2">Eternal Radiance</h3>
+<p class="text-titanium text-sm mb-6">Explore our signature series of timeless staples.</p>
+<a class="text-champagne font-sans text-xs font-bold tracking-widest flex items-center gap-2 group/link hover:text-platinum transition-colors" href="#">
+                            DISCOVER <span class="material-symbols-outlined group-hover/link:translate-x-2 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="md:col-span-4 grid grid-rows-2 gap-gutter">
+<div class="relative group overflow-hidden reveal rounded-2xl border border-white/5 bg-slateSurface">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105 opacity-80" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA-j05MfHAu32diN6AF776Wd6WWOiB0XnFY4XrUaeXxvDTHTE2q2dp5WIPuvMODDCYzzuIwn3ZSk84KnDDjy0w3o7lV8wXwhM463wPoD1QMABoRO-rhYT0d6NdRgb-RXqfshE8Xdu6-Yw_HLoxu_8KDMFZvY_MmRtu1adRl7RkT1Mip88rgAIhlKQeIonYhxbjtTTZVYhfDzOZbkSd2cc1XnqoPTsMwdxyuKULrgrPZHUwEJ2bJRi9Twa6NtEK7YUNr25gZWQJxhcU')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-obsidian/20 to-transparent"></div>
+<div class="absolute inset-0 flex flex-col justify-end p-8">
+<h4 class="text-platinum font-serif text-lg tracking-wide uppercase">Starlight Series</h4>
+<p class="text-titanium text-xs font-sans mt-1">Diamonds of exceptional fire.</p>
+</div>
+</div>
+<div class="relative group overflow-hidden reveal rounded-2xl border border-white/5 bg-slateSurface">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105 opacity-80" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAVEnwYcLsPZ2260kfauZHwykNM4NBuZPkWiQdagtIyx9SWgfDX9fSY3ckB2sVVlHXpYA5joX1kjqrTFU1yPpAt2PgBop84isV6ZpOfy9M0gy1ZZtlPQ_LEDbTm_7aw7s-PKnYeETKI0fFIYxRzE_TiRZH_9T_UrobFJ6zQHqxzygjXpc0J4eWXngu0yUPQgvyWQNMLSYKQm579tNcM4j-6ampqhDmNQXsVmMd64hrP-gwmhdgbGmsNfrQcyiUWLNbfRogIH_QOzQs')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-obsidian/20 to-transparent"></div>
+<div class="absolute inset-0 flex flex-col justify-end p-8">
+<h4 class="text-platinum font-serif text-lg tracking-wide uppercase">Bold Gold</h4>
+<p class="text-titanium text-xs font-sans mt-1">Statement pieces for the modern lifestyle.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- New Arrivals -->
+<section class="py-24 bg-obsidian border-t border-white/5" id="shop">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-12 reveal">
+<div>
+<span class="text-xs tracking-[0.25em] font-semibold text-champagne uppercase block mb-1">In The Spotlight</span>
+<h2 class="font-serif text-3xl md:text-4xl font-normal tracking-wide uppercase text-platinum">New Arrivals</h2>
+<p class="text-titanium">Just landed in our atelier.</p>
+</div>
+<a class="hidden md:flex items-center gap-2 text-champagne font-sans text-xs font-bold tracking-widest hover:text-platinum transition-colors" href="#">VIEW ALL PRODUCTS</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Product 1 -->
+<div class="group reveal">
+<div class="aspect-[3/4] relative overflow-hidden bg-slateSurface rounded-xl border border-white/5 mb-4">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPlTKlFbtjogeBjvDmrUeyv6a_a5DpKMSR7Gh4Wc8d2cR6TYC1R19ZcDqBkvAyE4ktlJ3iM69ko3G8DhC8d_ZLuzNZ4zTTdGlp7zSAy-PtGKqHAdoBlRLpdxziPKxUWQk8YFk_DhjmqdADcZG4B2W-f9WSZPotf00wVqz0hKbknqbkgIQkLTRqq6ge3ZHwuLb6V9s27iizwn-hXWzJleA1rhuvwTLtH4EzWJxDs3bPv55KLcxoPVDC6kCrvVsmCGmOocGxWtPwwig"/>
+<button class="absolute bottom-4 left-4 right-4 glass py-3 font-sans text-[10px] tracking-[0.2em] font-semibold text-platinum uppercase rounded-lg opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 hover:bg-platinum hover:text-obsidian premium-transition duration-500 shadow-md border border-white/10">QUICK ADD</button>
+</div>
+<h3 class="font-serif text-sm font-normal text-platinum tracking-wide hover:text-champagne transition-colors mb-1.5">Geometric Signet Ring</h3>
+<p class="text-champagne font-semibold font-sans text-sm">$1,250</p>
+</div>
+<!-- Product 2 -->
+<div class="group reveal" style="transition-delay: 100ms;">
+<div class="aspect-[3/4] relative overflow-hidden bg-slateSurface rounded-xl border border-white/5 mb-4">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWLBl2l6Tz-HYvqOA_Bo3lYks5rPPUfQOEinnEj9cQDrGDhCUJKGzGnowSImR1R7E7V1o4BcODUqSGo6oR5gqQLnUB-SBtpNvnZsDGlbIoFxfq6YIMPgyGkcRV-ZxWj4T0NDmIa8fo0BVcs8u8AcbKPYfeI-Hrc01vPBaJnVFNQcZSod6TPi-5PviNZOlcXXrhq-U3ShyXkcDVqSECsaDe4pgPy58fufjZlhRpB40V1a3JF3bu00CuGrEnt1zaMpPdUKDFyRK6llY"/>
+<button class="absolute bottom-4 left-4 right-4 glass py-3 font-sans text-[10px] tracking-[0.2em] font-semibold text-platinum uppercase rounded-lg opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 hover:bg-platinum hover:text-obsidian premium-transition duration-500 shadow-md border border-white/10">QUICK ADD</button>
+</div>
+<h3 class="font-serif text-sm font-normal text-platinum tracking-wide hover:text-champagne transition-colors mb-1.5">Floating Pearl Choker</h3>
+<p class="text-champagne font-semibold font-sans text-sm">$890</p>
+</div>
+<!-- Product 3 -->
+<div class="group reveal" style="transition-delay: 200ms;">
+<div class="aspect-[3/4] relative overflow-hidden bg-slateSurface rounded-xl border border-white/5 mb-4">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlhgs2Cb6GAs-lnJ5MXEykScInAFmBtVQbVaQrITHVcTuBH9nQwL8_Tt3eBe4qJkd3o2yEDUGXPLZPybxFUO4flX6mn2Mv7Rqi7nSwo14pUrbgI-7TvWbaMs4z94ejnBS-QylFuVXJcr-RL5-q0OXQs7buBPcbn_OAF3y4FZYC4hiHU4OypSWEKqAp1XlS4hYx_WkG3-eneKYSY8F5p_KY2kieKDajBlL7rFhclV5ZmmfgzlFyHVP00z4hYjHTuzwihjk-OOlCnqA"/>
+<button class="absolute bottom-4 left-4 right-4 glass py-3 font-sans text-[10px] tracking-[0.2em] font-semibold text-platinum uppercase rounded-lg opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 hover:bg-platinum hover:text-obsidian premium-transition duration-500 shadow-md border border-white/10">QUICK ADD</button>
+</div>
+<h3 class="font-serif text-sm font-normal text-platinum tracking-wide hover:text-champagne transition-colors mb-1.5">Filigree Hoops</h3>
+<p class="text-champagne font-semibold font-sans text-sm">$1,400</p>
+</div>
+<!-- Product 4 -->
+<div class="group reveal" style="transition-delay: 300ms;">
+<div class="aspect-[3/4] relative overflow-hidden bg-slateSurface rounded-xl border border-white/5 mb-4">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb5TFOhzutiWC1yEPv7IwIgA8Mrfr5MQqk59Oh26IMFn3n4_jgn5YNwgmEeoBfuR35HrQvzLnaSfRHFqua1wao5SlovzK771t6mDgzDtvucAU78WHLqXA3RTpVqqAe0O-NNsxVjix5oDdOujccTWW_Da-Mk5jw_noUjB6fPpULUPa7BIKYYNQgwdv5RvJ4vRDrPTgncm728IkxM_x6FUZrg5qRGrnnouuvc7pLJaS3ZAvC7iB-59zXEIhHoC4_tMP_kFyhSxXMp7U"/>
+<button class="absolute bottom-4 left-4 right-4 glass py-3 font-sans text-[10px] tracking-[0.2em] font-semibold text-platinum uppercase rounded-lg opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 hover:bg-platinum hover:text-obsidian premium-transition duration-500 shadow-md border border-white/10">QUICK ADD</button>
+</div>
+<h3 class="font-serif text-sm font-normal text-platinum tracking-wide hover:text-champagne transition-colors mb-1.5">Architectural Bangle</h3>
+<p class="text-champagne font-semibold font-sans text-sm">$2,100</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Category Grid -->
+<section class="py-24 bg-obsidian border-b border-white/5">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+<div class="flex flex-col items-center group cursor-pointer reveal">
+<div class="w-24 h-24 rounded-full bg-slateSurface border border-white/5 flex items-center justify-center mb-4 group-hover:bg-champagne/10 premium-transition">
+<span class="material-symbols-outlined text-4xl text-champagne">diamond</span>
+</div>
+<span class="font-serif text-xs tracking-widest uppercase text-platinum group-hover:text-champagne premium-transition">Rings</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer reveal" style="transition-delay: 100ms;">
+<div class="w-24 h-24 rounded-full bg-slateSurface border border-white/5 flex items-center justify-center mb-4 group-hover:bg-champagne/10 premium-transition">
+<span class="material-symbols-outlined text-4xl text-champagne">star</span>
+</div>
+<span class="font-serif text-xs tracking-widest uppercase text-platinum group-hover:text-champagne premium-transition">Earrings</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer reveal" style="transition-delay: 200ms;">
+<div class="w-24 h-24 rounded-full bg-slateSurface border border-white/5 flex items-center justify-center mb-4 group-hover:bg-champagne/10 premium-transition">
+<span class="material-symbols-outlined text-4xl text-champagne">straighten</span>
+</div>
+<span class="font-serif text-xs tracking-widest uppercase text-platinum group-hover:text-champagne premium-transition">Necklaces</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer reveal" style="transition-delay: 300ms;">
+<div class="w-24 h-24 rounded-full bg-slateSurface border border-white/5 flex items-center justify-center mb-4 group-hover:bg-champagne/10 premium-transition">
+<span class="material-symbols-outlined text-4xl text-champagne">watch</span>
+</div>
+<span class="font-serif text-xs tracking-widest uppercase text-platinum group-hover:text-champagne premium-transition">Bracelets</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer reveal" style="transition-delay: 400ms;">
+<div class="w-24 h-24 rounded-full bg-slateSurface border border-white/5 flex items-center justify-center mb-4 group-hover:bg-champagne/10 premium-transition">
+<span class="material-symbols-outlined text-4xl text-champagne">auto_awesome</span>
+</div>
+<span class="font-serif text-xs tracking-widest uppercase text-platinum group-hover:text-champagne premium-transition">Sets</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-24 bg-obsidian overflow-hidden">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto relative">
+<div class="text-center mb-16 reveal">
+<span class="font-sans text-xs tracking-[0.25em] text-champagne uppercase block mb-2">Kind Words</span>
+<h2 class="font-serif text-3xl md:text-4xl font-normal tracking-wide uppercase text-platinum">Client Stories</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="glass p-10 rounded-2xl border border-white/5 shadow-luxury flex flex-col justify-between hover:border-white/10 premium-transition reveal">
+<div class="space-y-4">
+<div class="flex gap-1 text-champagne mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-serif italic text-md text-titanium leading-relaxed">"The quality of the gold and the precision of the setting exceeded all my expectations. A truly heirloom piece."</p>
+</div>
+<div class="flex items-center gap-4 mt-6 border-t border-white/5 pt-4">
+<div class="w-10 h-10 rounded-full bg-champagne/10 text-champagne flex items-center justify-center font-bold font-serif text-sm">EV</div>
+<div>
+<p class="font-sans text-xs font-semibold text-platinum">Eleanor V.</p>
+<p class="text-[10px] text-titanium font-sans">Verified Buyer</p>
+</div>
+</div>
+</div>
+<div class="glass p-10 rounded-2xl border border-white/5 shadow-luxury flex flex-col justify-between hover:border-white/10 premium-transition reveal" style="transition-delay: 150ms;">
+<div class="space-y-4">
+<div class="flex gap-1 text-champagne mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-serif italic text-md text-titanium leading-relaxed">"Golden Glow captured the exact essence of what I wanted for our anniversary. The design process was seamless."</p>
+</div>
+<div class="flex items-center gap-4 mt-6 border-t border-white/5 pt-4">
+<div class="w-10 h-10 rounded-full bg-champagne/10 text-champagne flex items-center justify-center font-bold font-serif text-sm">MT</div>
+<div>
+<p class="font-sans text-xs font-semibold text-platinum">Marcus Thorne</p>
+<p class="text-[10px] text-titanium font-sans">Custom Project</p>
+</div>
+</div>
+</div>
+<div class="glass p-10 rounded-2xl border border-white/5 shadow-luxury flex flex-col justify-between hover:border-white/10 premium-transition reveal" style="transition-delay: 300ms;">
+<div class="space-y-4">
+<div class="flex gap-1 text-champagne mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-serif italic text-md text-titanium leading-relaxed">"Elegant, understated, but undeniably luxurious. I wear my signet ring every day and get compliments constantly."</p>
+</div>
+<div class="flex items-center gap-4 mt-6 border-t border-white/5 pt-4">
+<div class="w-10 h-10 rounded-full bg-champagne/10 text-champagne flex items-center justify-center font-bold font-serif text-sm">SC</div>
+<div>
+<p class="font-sans text-xs font-semibold text-platinum">Sophia Chen</p>
+<p class="text-[10px] text-titanium font-sans">Verified Buyer</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Instagram Gallery -->
+<section class="py-24 bg-obsidian border-t border-white/5">
+<div class="text-center mb-12">
+<h2 class="font-serif text-xl tracking-wider uppercase text-platinum">Follow the Glow</h2>
+<p class="text-champagne font-sans text-xs font-semibold tracking-widest mt-2 uppercase">@GOLDENGLOWJEWELRY</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-6 gap-2 px-margin-mobile md:px-6">
+<div class="aspect-square relative overflow-hidden group rounded-lg border border-white/5">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOckzl1rf34oYBqeYu4_FsuyBeqgAt3Uu46Salfr_MCQLibQ8UnlU2yvQErTQQnwCMb7ipZwyd9-E7nPwar6gEFgFzLaU0WB-Bbu-WRD_VjzhfLeJsH98QU9wPmymBSIdISrQC6uJ6xvByY1y_05QLYLHAOdUvlCD5LbAfIDBtHFV1LRAzLQ7dUN7ugtqYu0nUkknwNaMAM3sCNcRXUtwWfkq_nnIEFC512WOKVUsbHj2NrAWR4JebJbNaZxvVNkufr02gaomWEko"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl">favorite</span>
+</div>
+</div>
+<div class="aspect-square relative overflow-hidden group rounded-lg border border-white/5">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZw670Mo6vvHmqFz-l-1YV2xR6wS3_Xi148RlrXMosXE8kAfW3XrzfXWbruqpkNcKL8v2vvxBlO2Egf1wqfufz8Kjt0whUuAf3-Nq4Kfy2CsrNmQM1EDzO2NRKoKkVY5yU9qO0w7_TpISVFboURIMMSOw9yLbpuvPIBkGCr8FZgFSFC2nqG8HcSjwvXkgJ0nCJufjJsATYxoAa9tiM13r458qA_HUbIbf3xe3witECl4oA3D5oPXDvyJIrC4z6OzzYPvW9Rf8LQ7s"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl">favorite</span>
+</div>
+</div>
+<div class="aspect-square relative overflow-hidden group rounded-lg border border-white/5">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrbLGeWBMhq4rq-JuXwWctHE_zqYqrVF1cFxum2gD4ha28ilAYGHDs4tMku_Rdf9wo8z7bOpthVZ8og0H7kqh-Sy1qLT3nEzxLK8m7gSxy4bcPbLLDHvJRfMsuVHTOV0Tid31QkrnZmGTloafJ_8pTG5v6Uj4LKn5uRiW73qVtZ83GRte7NU-4ONB8XzUZCn8IvXAY2VJDO25B3Xb6-0GYwM7kDxPADBdqpYJiFfphRyWVwZyMPDJilCDOr7rcIdF8MkmptTRTC7w"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl">favorite</span>
+</div>
+</div>
+<div class="aspect-square relative overflow-hidden group rounded-lg border border-white/5">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB7kBbqJ0zfV3TZtfJT-7m8QXy7Z56zSnkDGXlxBz7kW0l90I3Pyfdwwf0sJwLy_FAPB0ZrWVKthQZ6UCHxVLbB4I1K7VaZgz4iB4qsGpFXRmKgKUmBwId8NojAEZWlmF4KnH9KEcyVxvBXyRcNKHuJeBhhJh2JtnJ_KQ7UTK7RxBRWieK0XfJ_FeX-GV3xQglof1G3D9aCQAoG2Sn5d-BQwhzz97ZNwjBF9KPR2SaQMzEKUb3-LXIWujxQ41lVvXylzTWBsUL5AU"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl">favorite</span>
+</div>
+</div>
+<div class="aspect-square relative overflow-hidden group rounded-lg border border-white/5">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5wSsUsUclAG8eic--5u979_KlqpD2T_zMnJl3ulEV5NRs5F1FsqldQf9lEF0PESHYjTh8xfyCwoo7vdxNuYs8x_n0qklzrPJHG1AR_pIk50McaiVtSH9Mz3_M9-qqhF85ZsWoA9UIEEegzpLoAwBHbbBaH_31bDP4WRobHKqLB6_KZ1661AsmnPuISXhOp1GlzyBzRybbrvkQn7W5KaLXqYfwyDC8cL-WAvx_lLisiYDQNLyePgMwwtNgeeuE5-kWjC0eYaCbxOM"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl">favorite</span>
+</div>
+</div>
+<div class="aspect-square relative overflow-hidden group rounded-lg border border-white/5">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8I464iTlOO7eRuFFGx0HBcp2Ka-g4bf0hMkp5lZYuxuwLWU8e_zx6VuH0lgOFr53LPDOGK6tUl0PIQxUnoNcpKExp6-zQSXG_H00XiZjU-0hjJ9x7Ov72cVRGvRbujDGp5BsWxa-Dn4-aNHjKtN89y21dGYWqhqXESs0ueRKDNu_xYsZYpclUls5sUx68ND82lw5743GYQEmMKa4GBUsDaRySgqOb9MoYnSK0SQUpGVyQhjXuhHTw6fWQsvZQNdhsaF_GwP2m3-E"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl">favorite</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Newsletter -->
+<section class="py-24 bg-slateSurface border-y border-white/5 text-platinum">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+<div class="max-w-xl text-center md:text-left">
+<h2 class="font-serif text-2xl md:text-3xl font-normal uppercase tracking-wide text-platinum mb-4">Join the Golden Circle</h2>
+<p class="font-sans text-sm text-titanium leading-relaxed">Be the first to see new collections and receive exclusive invitations to private events.</p>
+</div>
+<form class="w-full max-w-md flex flex-col sm:flex-row gap-4">
+<input class="flex-grow bg-obsidian border border-white/10 placeholder:text-titanium/45 text-platinum focus:ring-1 focus:ring-champagne/45 py-4 px-6 font-sans text-xs tracking-wider uppercase rounded-lg" placeholder="YOUR EMAIL ADDRESS" type="email"/>
+<button class="bg-platinum text-obsidian px-8 py-4 font-sans text-xs font-bold tracking-[0.2em] hover:bg-champagne transition-colors uppercase whitespace-nowrap rounded-lg" type="submit">Subscribe</button>
+</form>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-obsidian pt-20 pb-10 border-t border-white/5 text-platinum">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="md:col-span-1 space-y-6">
+<div class="font-serif text-xl tracking-widest text-platinum uppercase font-normal">Golden Glow</div>
+<p class="text-titanium text-xs leading-relaxed max-w-xs">Crafting timeless elegance since 1992. Every piece is handmade in our London atelier with ethically sourced metals.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-titanium hover:bg-white/5 hover:text-platinum transition-all" href="#"><span class="material-symbols-outlined text-sm">share</span></a>
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-titanium hover:bg-white/5 hover:text-platinum transition-all" href="#"><span class="material-symbols-outlined text-sm">public</span></a>
+</div>
+</div>
+<div class="md:col-span-1">
+<h4 class="font-serif text-xs font-semibold mb-8 uppercase tracking-widest text-platinum">Shop</h4>
+<ul class="space-y-4 font-sans text-xs text-titanium">
+<li><a class="hover:text-champagne transition-all hover:translate-x-1 inline-block" href="#">New Arrivals</a></li>
+<li><a class="hover:text-champagne transition-all hover:translate-x-1 inline-block" href="#">Best Sellers</a></li>
+<li><a class="hover:text-champagne transition-all hover:translate-x-1 inline-block" href="#">Bridal</a></li>
+<li><a class="hover:text-champagne transition-all hover:translate-x-1 inline-block" href="#">Gifts</a></li>
+</ul>
+</div>
+<div class="md:col-span-1">
+<h4 class="font-serif text-xs font-semibold mb-8 uppercase tracking-widest text-platinum">Information</h4>
+<ul class="space-y-4 font-sans text-xs text-titanium">
+<li><a class="hover:text-champagne transition-all hover:translate-x-1 inline-block" href="#">Brand Story</a></li>
+<li><a class="hover:text-champagne transition-all hover:translate-x-1 inline-block" href="#">Care Guide</a></li>
+<li><a class="hover:text-champagne transition-all hover:translate-x-1 inline-block" href="#">Shipping</a></li>
+<li><a class="hover:text-champagne transition-all hover:translate-x-1 inline-block" href="#">Contact</a></li>
+</ul>
+</div>
+<div class="md:col-span-1">
+<h4 class="font-serif text-xs font-semibold mb-8 uppercase tracking-widest text-platinum">Atelier</h4>
+<p class="text-titanium text-xs leading-relaxed mb-4">12 Bond Street,<br/>London, W1S 1AR</p>
+<p class="text-titanium text-xs leading-relaxed mb-4">Mon - Sat: 10am - 7pm<br/>Sun: 12pm - 5pm</p>
+<a class="text-champagne font-sans text-[10px] font-bold tracking-widest border-b border-champagne/40 pb-1 hover:text-platinum transition-colors" href="#">BOOK AN APPOINTMENT</a>
+</div>
+</div>
+<div class="mt-20 border-t border-white/5 pt-10 text-center">
+<p class="text-[10px] text-titanium/40 font-sans tracking-widest">© 2024 Golden Glow. Handcrafted Excellence. All Rights Reserved.</p>
+</div>
+</footer>
+
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden flex justify-around items-center h-16 px-4 pb-safe bg-obsidian/90 backdrop-blur-lg fixed bottom-0 w-full z-50 rounded-t-xl border-t border-white/5 shadow-lg text-platinum">
+<a class="flex flex-col items-center justify-center text-champagne scale-110 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[9px] tracking-wider uppercase font-semibold mt-0.5">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-titanium opacity-75 hover:opacity-100 hover:text-platinum transition-colors" href="#shop">
+<span class="material-symbols-outlined">storefront</span>
+<span class="text-[9px] tracking-wider uppercase font-semibold mt-0.5">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center text-titanium opacity-75 hover:opacity-100 hover:text-platinum transition-colors" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="text-[9px] tracking-wider uppercase font-semibold mt-0.5">Wishlist</span>
+</a>
+<a class="flex flex-col items-center justify-center text-titanium opacity-75 hover:opacity-100 hover:text-platinum transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[9px] tracking-wider uppercase font-semibold mt-0.5">Profile</span>
+</a>
+</nav>
+
+<script>
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Initial check
+
+        // Header scroll effect
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('h-16', 'bg-obsidian/95');
+                header.classList.remove('h-20', 'bg-obsidian/80');
+            } else {
+                header.classList.add('h-20', 'bg-obsidian/80');
+                header.classList.remove('h-16', 'bg-obsidian/95');
+            }
+        });
+    </script>
+</body></html>

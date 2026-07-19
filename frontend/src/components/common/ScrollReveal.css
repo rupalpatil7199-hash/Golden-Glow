@@ -1,0 +1,14 @@
+.scroll-reveal {
+  display: block;
+}
+
+.scroll-reveal-text {
+  display: block;
+  white-space: pre-wrap;
+}
+
+.scroll-reveal .word {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: opacity, filter;
+}

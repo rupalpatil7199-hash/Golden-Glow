@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-obsidian text-platinum min-h-screen selection:bg-primary/20 antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-widest uppercase;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(20, 23, 29, 0.72);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
+  }
+  
+  .glass-dark {
+    background: rgba(13, 15, 18, 0.85);
+    backdrop-filter: blur(24px) saturate(120%);
+    -webkit-backdrop-filter: blur(24px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 12px 48px -12px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.02);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 30px rgba(201, 176, 103, 0.25);
+  }
+
+  .chromatic-glow {
+    box-shadow: -2px -2px 12px rgba(255, 255, 255, 0.03), 2px 2px 12px rgba(201, 176, 103, 0.05);
+    transition: all 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .chromatic-glow:hover {
+    box-shadow: -4px -4px 20px rgba(255, 255, 255, 0.06), 4px 4px 20px rgba(201, 176, 103, 0.12);
+  }
+
+  .premium-transition {
+    transition: all 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Morphing Liquid Glass Orbs for Dark Theme - using screen blending */
+  .liquid-orb-1 {
+    animation: morphOrb1 22s infinite alternate ease-in-out;
+    filter: blur(100px);
+    mix-blend-mode: screen;
+  }
+
+  .liquid-orb-2 {
+    animation: morphOrb2 28s infinite alternate ease-in-out;
+    filter: blur(120px);
+    mix-blend-mode: screen;
+  }
+
+  .liquid-orb-3 {
+    animation: morphOrb3 24s infinite alternate ease-in-out;
+    filter: blur(95px);
+    mix-blend-mode: screen;
+  }
+}
+
+@keyframes morphOrb1 {
+  0% {
+    transform: translate(0px, 0px) scale(1) rotate(0deg);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  33% {
+    transform: translate(60px, -90px) scale(1.2) rotate(120deg);
+    border-radius: 40% 60% 70% 30% / 50% 60% 30% 70%;
+  }
+  66% {
+    transform: translate(-40px, 50px) scale(0.85) rotate(240deg);
+    border-radius: 70% 30% 50% 50% / 30% 50% 70% 50%;
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1) rotate(360deg);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
+
+@keyframes morphOrb2 {
+  0% {
+    transform: translate(0px, 0px) scale(1) rotate(0deg);
+    border-radius: 50% 50% 30% 70% / 50% 60% 40% 60%;
+  }
+  50% {
+    transform: translate(-70px, 70px) scale(1.25) rotate(-180deg);
+    border-radius: 70% 30% 80% 20% / 60% 40% 60% 40%;
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1) rotate(-360deg);
+    border-radius: 50% 50% 30% 70% / 50% 60% 40% 60%;
+  }
+}
+
+@keyframes morphOrb3 {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+    border-radius: 40% 60% 50% 50% / 40% 40% 60% 60%;
+  }
+  50% {
+    transform: translate(80px, 50px) scale(0.8);
+    border-radius: 60% 40% 60% 40% / 50% 60% 40% 50%;
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+    border-radius: 40% 60% 50% 50% / 40% 40% 60% 60%;
+  }
+}
+
+/* Custom premium scrollbar - obsidian & titanium */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #08090b;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(162, 167, 175, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c9b067;
+}
+
+/* Skeleton Loading Shimmer */
+.shimmer-bg {
+  background: linear-gradient(90deg, #efeded 25%, #f5f3f3 50%, #efeded 75%);
+  background-size: 200% 100%;
+}
+
+/* Material Symbol Outlined customization */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.fill-icon {
+  font-variation-settings: 'FILL' 1, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+}
