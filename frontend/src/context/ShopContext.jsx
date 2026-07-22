@@ -138,7 +138,7 @@ const mockProducts = [
     description: 'A classic chain bracelet featuring delicate interlocking links in solid 18K Yellow Gold. Designed for simple elegance.',
     price: 950,
     discount: 0,
-    images: ['https://images.unsplash.com/photo-1667013829921-b1c1719a0cfa?auto=format&fit=crop&w=800&q=80'],
+    images: ['/bracelet.jpg'],
     category: 'Bracelets',
     material: '18K Yellow Gold',
     weight: '4.8 grams',

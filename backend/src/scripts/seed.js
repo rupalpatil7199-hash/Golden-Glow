@@ -11,7 +11,7 @@ const categoriesData = [
   { name: 'Rings', slug: 'rings', image: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80', description: 'Graceful statements for your fingers' },
   { name: 'Earrings', slug: 'earrings', image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=800&q=80', description: 'Frame your face with delicate shimmer' },
   { name: 'Necklaces', slug: 'necklaces', image: 'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=80', description: 'Sculptured details to grace the collar' },
-  { name: 'Bracelets', slug: 'bracelets', image: 'https://images.unsplash.com/photo-1667013829921-b1c1719a0cfa?auto=format&fit=crop&w=800&q=80', description: 'Elegance that flows with every movement' },
+  { name: 'Bracelets', slug: 'bracelets', image: '/bracelet.jpg', description: 'Elegance that flows with every movement' },
   { name: 'Bangles', slug: 'bangles', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=800&q=80', description: 'Timeless circular gold cuffs' }
 ];
 
@@ -160,7 +160,7 @@ const productsData = [
     price: 950,
     discount: 0,
     images: [
-      'https://images.unsplash.com/photo-1667013829921-b1c1719a0cfa?auto=format&fit=crop&w=800&q=80'
+      '/bracelet.jpg'
     ],
     videoUrl: '',
     category: 'Bracelets',
