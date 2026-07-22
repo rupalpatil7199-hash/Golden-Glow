@@ -86,7 +86,7 @@ const productsData = [
     price: 2100,
     discount: 5,
     images: [
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuBb5TFOhzutiWC1yEPv7IwIgA8Mrfr5MQqk59Oh26IMFn3n4_jgn5YNwgmEeoBfuR35HrQvzLnaSfRHFqua1wao5SlovzK771t6mDgzDtvucAU78WHLqXA3RTpVqqAe0O-NNsxVjix5oDdOujccTWW_Da-Mk5jw_noUjB6fPpULUPa7BIKYYNQgwdv5RvJ4vRDrPTgncm728IkxM_x6FUZrg5qRGrnnouuvc7pLJaS3ZAvC7iB-59zXEIhHoC4_tMP_kFyhSxXMp7U',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=800&q=80',
       'https://lh3.googleusercontent.com/aida-public/AB6AXuAB7kBbqJ0zfV3TZtfJT-7m8QXy7Z56zSnkDGXlxBz7kW0l90I3Pyfdwwf0sJwLy_FAPB0ZrWVKthQZ6UCHxVLbB4I1K7VaZgz4iB4qsGpFXRmKgKUmBwId8NojAEZWlmF4KnH9KEcyVxvBXyRcNKHuJeBhhJh2JtnJ_KQ7UTK7RxBRWieK0XfJ_FeX-GV3xQglof1G3D9aCQAoG2Sn5d-BQwhzz97ZNwjBF9KPR2SaQMzEKUb3-LXIWujxQ41lVvXylzTWBsUL5AU'
     ],
     videoUrl: '',
@@ -155,7 +155,7 @@ const productsData = [
     description: 'A classic chain bracelet featuring delicate interlocking links in solid 18K Yellow Gold. Designed for simple elegance.',
     price: 950,
     discount: 0,
-    images: ['https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=800&q=80'],
+    images: ['https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=80'],
     category: 'Bracelets',
     material: '18K Yellow Gold',
     weight: '4.8 grams',
