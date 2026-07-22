@@ -40,10 +40,10 @@ const Policy = () => {
       <span className="text-[10px] tracking-[0.3em] font-semibold text-primary-glow uppercase block text-center">
         {content.tag}
       </span>
-      <h1 className="font-serif text-3xl md:text-4xl font-bold text-luxuryBlack text-center tracking-tight">
+      <h1 className="font-serif text-3xl md:text-4xl font-bold text-white text-center tracking-tight">
         {content.title}
       </h1>
-      <p className="text-sm text-secondary-text leading-relaxed font-sans pt-6 border-t border-surface-container/60">
+      <p className="text-sm text-[#BDBDBD] leading-relaxed font-sans pt-6 border-t border-surface-container/60">
         {content.body}
       </p>
     </div>

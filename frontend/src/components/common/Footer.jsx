@@ -40,7 +40,7 @@ const Footer = () => {
 
         {/* Shop links */}
         <div>
-          <h4 className="font-sans text-xs font-bold uppercase tracking-[0.2em] mb-6 text-luxuryBlack">Shop Collections</h4>
+          <h4 className="font-sans text-xs font-bold uppercase tracking-[0.2em] mb-6 text-white">Shop Collections</h4>
           <ul className="space-y-3">
             <li><Link to="/shop?category=Rings" className="text-sm text-secondary hover:text-primary-glow transition-colors">Rings</Link></li>
             <li><Link to="/shop?category=Earrings" className="text-sm text-secondary hover:text-primary-glow transition-colors">Earrings</Link></li>
@@ -49,10 +49,10 @@ const Footer = () => {
             <li><Link to="/shop?category=Bangles" className="text-sm text-secondary hover:text-primary-glow transition-colors">Bangles</Link></li>
           </ul>
         </div>
-
+ 
         {/* Customer Care / Policy Links */}
         <div>
-          <h4 className="font-sans text-xs font-bold uppercase tracking-[0.2em] mb-6 text-luxuryBlack">Information</h4>
+          <h4 className="font-sans text-xs font-bold uppercase tracking-[0.2em] mb-6 text-white">Information</h4>
           <ul className="space-y-3">
             <li><Link to="/about" className="text-sm text-secondary hover:text-primary-glow transition-colors">Our Brand Story</Link></li>
             <li><Link to="/shipping" className="text-sm text-secondary hover:text-primary-glow transition-colors">Shipping & Delivery</Link></li>
@@ -61,10 +61,10 @@ const Footer = () => {
             <li><Link to="/terms" className="text-sm text-secondary hover:text-primary-glow transition-colors">Terms of Service</Link></li>
           </ul>
         </div>
-
+ 
         {/* Newsletter Form */}
         <div>
-          <h4 className="font-sans text-xs font-bold uppercase tracking-[0.2em] mb-6 text-luxuryBlack">Join the Golden Circle</h4>
+          <h4 className="font-sans text-xs font-bold uppercase tracking-[0.2em] mb-6 text-white">Join the Golden Circle</h4>
           <p className="text-sm text-secondary-text mb-4 leading-relaxed">
             Be the first to see new releases and receive private invitations to exclusive events.
           </p>
@@ -74,12 +74,12 @@ const Footer = () => {
               placeholder="Your email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-white border border-surface-container text-xs p-3 rounded focus:outline-none focus:ring-1 focus:ring-primary-glow font-sans w-full"
+              className="bg-surface-container border border-surface/20 text-white placeholder-secondary-text text-xs p-3 rounded focus:outline-none focus:ring-1 focus:ring-primary-glow font-sans w-full"
               required
             />
             <button 
               type="submit"
-              className="bg-luxuryBlack text-white hover:bg-primary-glow p-3 text-xs uppercase tracking-wider font-semibold font-sans transition-colors w-full rounded"
+              className="bg-primary-glow text-luxuryBlack hover:bg-primary p-3 text-xs uppercase tracking-wider font-semibold font-sans transition-colors w-full rounded"
             >
               Subscribe
             </button>

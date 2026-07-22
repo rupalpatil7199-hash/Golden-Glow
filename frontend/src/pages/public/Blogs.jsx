@@ -27,8 +27,8 @@ const Blogs = () => {
       {/* Title */}
       <div className="text-center max-w-xl mx-auto space-y-4">
         <span className="text-xs tracking-[0.3em] font-semibold text-primary-glow uppercase">The Journal</span>
-        <h1 className="font-serif text-4xl md:text-5xl font-bold text-luxuryBlack tracking-tight">Atelier Diaries</h1>
-        <p className="text-sm text-secondary-text leading-relaxed">
+        <h1 className="font-serif text-4xl md:text-5xl font-bold text-white tracking-tight">Atelier Diaries</h1>
+        <p className="text-sm text-[#BDBDBD] leading-relaxed">
           Explore gemstone histories, care instructions, and styling notes from our in-house consultants.
         </p>
       </div>
@@ -50,10 +50,10 @@ const Blogs = () => {
                 <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> {post.date}</span>
                 <span className="flex items-center gap-1"><User className="w-3.5 h-3.5" /> By {post.author}</span>
               </div>
-              <h3 className="font-serif text-lg font-bold text-luxuryBlack group-hover:text-primary-glow transition-colors">
+              <h3 className="font-serif text-lg font-bold text-white group-hover:text-primary-glow transition-colors">
                 {post.title}
               </h3>
-              <p className="text-xs text-secondary-text leading-relaxed font-sans">{post.excerpt}</p>
+              <p className="text-xs text-[#BDBDBD] leading-relaxed font-sans">{post.excerpt}</p>
               <span className="text-xs font-semibold text-primary flex items-center gap-1 group-hover:underline pt-2">
                 READ JOURNAL ENTRY <ArrowRight className="w-4 h-4" />
               </span>

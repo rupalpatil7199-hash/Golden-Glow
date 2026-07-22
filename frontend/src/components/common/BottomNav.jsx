@@ -4,7 +4,7 @@ import { Home, Store, Heart, User } from 'lucide-react';
 
 const BottomNav = () => {
   return (
-    <nav className="md:hidden flex justify-around items-center h-16 bg-white/95 backdrop-blur-lg fixed bottom-0 w-full z-50 rounded-t-2xl shadow-luxury border-t border-surface-container/60">
+    <nav className="md:hidden flex justify-around items-center h-16 bg-obsidian/90 backdrop-blur-lg fixed bottom-0 w-full z-50 rounded-t-2xl shadow-luxury border-t border-surface-container/60">
       <NavLink 
         to="/" 
         className={({ isActive }) => 

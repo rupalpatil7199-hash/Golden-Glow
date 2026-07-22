@@ -45,24 +45,24 @@ const CartDrawer = ({ isOpen, onClose }) => {
     <div className="fixed inset-0 z-[100] flex justify-end">
       {/* Backdrop blur overlay */}
       <div 
-        className="absolute inset-0 bg-black/40 backdrop-blur-sm animate-fade-in"
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm animate-fade-in"
         onClick={onClose}
       />
 
       {/* Drawer slide panel */}
-      <div className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col justify-between animate-slide-up z-10 border-l border-surface-container">
+      <div className="relative w-full max-w-md bg-surface-low h-full shadow-2xl flex flex-col justify-between animate-slide-up z-10 border-l border-surface-container">
         
         {/* Header */}
         <div className="p-6 border-b border-surface-container flex items-center justify-between">
           <div className="flex items-center gap-2">
             <ShoppingBag className="w-5 h-5 text-primary-glow" />
-            <h3 className="font-serif text-lg font-bold">Your Atelier Bag</h3>
+            <h3 className="font-serif text-lg font-bold text-white">Your Atelier Bag</h3>
           </div>
           <button 
             onClick={onClose}
             className="w-8 h-8 rounded-full bg-surface hover:bg-surface-container flex items-center justify-center transition-colors"
           >
-            <X className="w-4 h-4 text-luxuryBlack" />
+            <X className="w-4 h-4 text-white" />
           </button>
         </div>
 
@@ -71,11 +71,11 @@ const CartDrawer = ({ isOpen, onClose }) => {
           {cartItems.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center gap-4 py-20">
               <span className="material-symbols-outlined text-surface-container-high text-6xl">shopping_bag</span>
-              <p className="font-serif text-md font-semibold text-luxuryBlack">Your bag is empty</p>
+              <p className="font-serif text-md font-semibold text-white">Your bag is empty</p>
               <p className="text-xs text-secondary max-w-xs">Explore our premium collections and add brilliant items to your bag.</p>
               <button 
                 onClick={() => { onClose(); navigate('/shop'); }}
-                className="mt-4 bg-luxuryBlack text-white hover:bg-primary-glow px-6 py-3 text-xs tracking-wider uppercase font-semibold transition-colors rounded"
+                className="mt-4 bg-primary-glow text-luxuryBlack hover:bg-primary px-6 py-3 text-xs tracking-wider uppercase font-semibold transition-colors rounded"
               >
                 Start Shopping
               </button>
@@ -94,7 +94,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
                     <div className="flex-grow flex flex-col justify-between">
                       <div>
                         <div className="flex justify-between items-start gap-2">
-                          <h4 className="font-serif text-sm font-semibold text-luxuryBlack line-clamp-1">{item.product.title}</h4>
+                          <h4 className="font-serif text-sm font-semibold text-white line-clamp-1">{item.product.title}</h4>
                           <button 
                             onClick={() => removeFromCart(item.product._id)}
                             className="text-secondary hover:text-red-600 transition-colors"
@@ -113,14 +113,14 @@ const CartDrawer = ({ isOpen, onClose }) => {
                             disabled={item.quantity <= 1}
                             className="p-1 px-2 hover:bg-surface-container disabled:opacity-40"
                           >
-                            <Minus className="w-3 h-3 text-luxuryBlack" />
+                            <Minus className="w-3 h-3 text-white" />
                           </button>
-                          <span className="text-xs px-2 font-semibold font-sans">{item.quantity}</span>
+                          <span className="text-xs px-2 font-semibold font-sans text-white">{item.quantity}</span>
                           <button 
                             onClick={() => updateQuantity(item.product._id, item.quantity + 1)}
                             className="p-1 px-2 hover:bg-surface-container"
                           >
-                            <Plus className="w-3 h-3 text-luxuryBlack" />
+                            <Plus className="w-3 h-3 text-white" />
                           </button>
                         </div>
 
@@ -146,21 +146,21 @@ const CartDrawer = ({ isOpen, onClose }) => {
                   placeholder="COUPON CODE"
                   value={promoInput}
                   onChange={(e) => setPromoInput(e.target.value)}
-                  className="border border-surface-container text-xs p-2 rounded flex-grow focus:outline-none focus:ring-1 focus:ring-primary-glow font-sans"
+                  className="bg-surface-container border border-surface-container text-white placeholder-secondary-text text-xs p-2 rounded flex-grow focus:outline-none focus:ring-1 focus:ring-primary-glow font-sans"
                   disabled={!!couponCode}
                 />
                 {couponCode ? (
                   <button 
                     type="button"
                     onClick={removeCoupon}
-                    className="border border-red-200 text-red-600 px-4 py-2 text-xs rounded hover:bg-red-50"
+                    className="border border-red-500 text-red-500 px-4 py-2 text-xs rounded hover:bg-red-500/10"
                   >
                     Remove
                   </button>
                 ) : (
                   <button 
                     type="submit"
-                    className="bg-luxuryBlack text-white hover:bg-primary-glow px-4 py-2 text-xs uppercase tracking-wider font-semibold rounded"
+                    className="bg-primary-glow text-luxuryBlack hover:bg-primary px-4 py-2 text-xs uppercase tracking-wider font-semibold rounded"
                   >
                     Apply
                   </button>
@@ -174,20 +174,20 @@ const CartDrawer = ({ isOpen, onClose }) => {
               <div className="border-t border-surface-container/60 pt-4">
                 <button 
                   onClick={() => setShowGiftInput(!showGiftInput)}
-                  className="flex items-center gap-2 text-xs text-secondary hover:text-luxuryBlack font-medium transition-colors"
+                  className="flex items-center gap-2 text-xs text-secondary hover:text-white font-medium transition-colors"
                 >
                   <Gift className="w-4 h-4 text-primary-glow" /> 
                   <span>Add Premium Gift Wrapping? (+$15)</span>
                 </button>
                 
                 {showGiftInput && (
-                  <div className="mt-2 space-y-2 animate-scale-up">
+                  <div className="mt-2 space-y-2 animate-scale-up text-white">
                     <label className="flex items-center gap-2 text-xs">
                       <input
                         type="checkbox"
                         checked={giftWrap}
                         onChange={(e) => setGiftWrap(e.target.checked)}
-                        className="rounded border-gray-300 text-primary-glow focus:ring-primary-glow"
+                        className="rounded border-surface-container bg-surface text-primary-glow focus:ring-primary-glow"
                       />
                       <span>Select Gift Wrap Packaging</span>
                     </label>
@@ -195,7 +195,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
                       placeholder="Add a handwritten gift message..."
                       value={giftMessage}
                       onChange={(e) => setGiftMessage(e.target.value)}
-                      className="border border-surface-container text-xs p-2 rounded w-full focus:outline-none focus:ring-1 focus:ring-primary-glow font-sans h-16"
+                      className="bg-surface-container border border-surface-container text-white placeholder-secondary-text text-xs p-2 rounded w-full focus:outline-none focus:ring-1 focus:ring-primary-glow font-sans h-16"
                     />
                   </div>
                 )}
@@ -233,7 +233,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
                 <span>Estimated Tax (8%)</span>
                 <span>${tax.toLocaleString()}</span>
               </div>
-              <div className="flex justify-between text-sm font-semibold border-t border-surface-container/60 pt-2 text-luxuryBlack">
+              <div className="flex justify-between text-sm font-semibold border-t border-surface-container/60 pt-2 text-white">
                 <span>Order Total</span>
                 <span className="text-primary font-sans">${total.toLocaleString()}</span>
               </div>
@@ -241,7 +241,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
 
             <button 
               onClick={handleCheckoutClick}
-              className="w-full bg-luxuryBlack hover:bg-primary-glow text-white py-4 rounded-lg text-xs font-semibold tracking-[0.2em] uppercase transition-colors flex items-center justify-center gap-2 shadow-luxury"
+              className="w-full bg-primary-glow hover:bg-primary text-luxuryBlack py-4 rounded-lg text-xs font-semibold tracking-[0.2em] uppercase transition-colors flex items-center justify-center gap-2 shadow-luxury"
             >
               PROCEED TO ATELIER CHECKOUT <ArrowRight className="w-4 h-4" />
             </button>

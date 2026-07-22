@@ -17,8 +17,8 @@ const FAQ = () => {
       {/* Title */}
       <div className="text-center space-y-4">
         <span className="text-xs tracking-[0.3em] font-semibold text-primary-glow uppercase">Customer Care</span>
-        <h1 className="font-serif text-4xl font-bold text-luxuryBlack tracking-tight">Frequently Asked Questions</h1>
-        <p className="text-sm text-secondary-text leading-relaxed">
+        <h1 className="font-serif text-4xl font-bold text-white tracking-tight">Frequently Asked Questions</h1>
+        <p className="text-sm text-[#BDBDBD] leading-relaxed">
           Quick details regarding orders, shipping conditions, resizing, and warranties.
         </p>
       </div>
@@ -28,18 +28,18 @@ const FAQ = () => {
         {faqs.map((faq, idx) => (
           <div 
             key={idx} 
-            className="border border-surface-container rounded-xl overflow-hidden shadow-sm bg-white"
+            className="border border-surface-container rounded-xl overflow-hidden shadow-sm bg-surface"
           >
             <button
               onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
-              className="w-full flex justify-between items-center p-5 text-left text-xs font-bold text-luxuryBlack tracking-wider uppercase font-sans hover:bg-surface-low transition-colors"
+              className="w-full flex justify-between items-center p-5 text-left text-xs font-bold text-white tracking-wider uppercase font-sans hover:bg-surface-low transition-colors"
             >
               <span>{faq.q}</span>
               {openIdx === idx ? <ChevronUp className="w-4 h-4 text-primary" /> : <ChevronDown className="w-4 h-4 text-primary" />}
             </button>
             
             {openIdx === idx && (
-              <div className="p-5 border-t border-surface-container bg-surface text-xs text-secondary-text leading-relaxed font-sans animate-scale-up">
+              <div className="p-5 border-t border-surface-container bg-surface-dim text-xs text-[#BDBDBD] leading-relaxed font-sans animate-scale-up">
                 {faq.a}
               </div>
             )}

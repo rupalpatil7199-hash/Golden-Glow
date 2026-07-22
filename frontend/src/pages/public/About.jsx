@@ -8,8 +8,8 @@ const About = () => {
       {/* Title Hero */}
       <div className="text-center max-w-xl mx-auto space-y-4">
         <span className="text-xs tracking-[0.3em] font-semibold text-primary-glow uppercase">Est. 1992</span>
-        <h1 className="font-serif text-4xl md:text-5xl font-bold text-luxuryBlack tracking-tight">Our Brand Story</h1>
-        <p className="text-sm text-secondary-text leading-relaxed">
+        <h1 className="font-serif text-4xl md:text-5xl font-bold text-white tracking-tight">Our Brand Story</h1>
+        <p className="text-sm text-[#BDBDBD] leading-relaxed">
           Crafting fine metals, setting exceptional stones, and honoring human history through modern jewelry.
         </p>
       </div>
@@ -24,9 +24,9 @@ const About = () => {
           />
         </div>
         <div className="space-y-6">
-          <h2 className="font-serif text-2xl md:text-3xl font-bold text-luxuryBlack">The London Atelier</h2>
+          <h2 className="font-serif text-2xl md:text-3xl font-bold text-white">The London Atelier</h2>
           <p className="text-xs text-secondary tracking-widest uppercase font-semibold">12 Bond Street, London, W1S 1AR</p>
-          <p className="text-sm text-secondary-text leading-relaxed font-sans">
+          <p className="text-sm text-[#BDBDBD] leading-relaxed font-sans">
             Every Golden Glow jewelry piece begins its journey in our private Bond Street studio. Our master craftsmen combine age-old filigree drawing processes with modern multi-dimensional casting to ensure structural integrity and a shimmering gold finish.
           </p>
           <div className="border-t border-surface-container/60 pt-4 text-xs space-y-1 text-secondary font-sans">
@@ -42,8 +42,8 @@ const About = () => {
           <div className="w-12 h-12 rounded-full bg-primary-glow/10 text-primary-glow flex items-center justify-center mx-auto">
             <Compass className="w-6 h-6" />
           </div>
-          <h4 className="font-serif text-sm font-bold text-luxuryBlack">Conflict-Free Gemstones</h4>
-          <p className="text-xs text-secondary-text leading-relaxed font-sans">
+          <h4 className="font-serif text-sm font-bold text-white">Conflict-Free Gemstones</h4>
+          <p className="text-xs text-[#BDBDBD] leading-relaxed font-sans">
             All our diamonds are certified conflict-free in compliance with the Kimberley Process, ensuring sustainable social structures.
           </p>
         </div>
@@ -52,8 +52,8 @@ const About = () => {
           <div className="w-12 h-12 rounded-full bg-primary-glow/10 text-primary-glow flex items-center justify-center mx-auto">
             <ShieldCheck className="w-6 h-6" />
           </div>
-          <h4 className="font-serif text-sm font-bold text-luxuryBlack">Recycled Precious Metals</h4>
-          <p className="text-xs text-secondary-text leading-relaxed font-sans">
+          <h4 className="font-serif text-sm font-bold text-white">Recycled Precious Metals</h4>
+          <p className="text-xs text-[#BDBDBD] leading-relaxed font-sans">
             We cast our products using 100% recycled 18K Yellow Gold and Platinum 950 to reduce environmental degradation.
           </p>
         </div>
@@ -62,8 +62,8 @@ const About = () => {
           <div className="w-12 h-12 rounded-full bg-primary-glow/10 text-primary-glow flex items-center justify-center mx-auto">
             <HeartHandshake className="w-6 h-6" />
           </div>
-          <h4 className="font-serif text-sm font-bold text-luxuryBlack">Lifetime Care Guarantee</h4>
-          <p className="text-xs text-secondary-text leading-relaxed font-sans">
+          <h4 className="font-serif text-sm font-bold text-white">Lifetime Care Guarantee</h4>
+          <p className="text-xs text-[#BDBDBD] leading-relaxed font-sans">
             We provide complimentary biannual diamond prong checks, ultrasonic cleaning, and repolishing details for all clients.
           </p>
         </div>
