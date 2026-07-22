@@ -17,3 +17,5 @@ connectDB().then(() => {
 }).catch(err => {
   console.error('Failed to start server due to DB connection failure', err);
 });
+
+export default app;
