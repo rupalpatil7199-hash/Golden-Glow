@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 
 const categoriesData = [
-  { name: 'Rings', slug: 'rings', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDPlTKlFbtjogeBjvDmrUeyv6a_a5DpKMSR7Gh4Wc8d2cR6TYC1R19ZcDqBkvAyE4ktlJ3iM69ko3G8DhC8d_ZLuzNZ4zTTdGlp7zSAy-PtGKqHAdoBlRLpdxziPKxUWQk8YFk_DhjmqdADcZG4B2W-f9WSZPotf00wVqz0hKbknqbkgIQkLTRqq6ge3ZHwuLb6V9s27iizwn-hXWzJleA1rhuvwTLtH4EzWJxDs3bPv55KLcxoPVDC6kCrvVsmCGmOocGxWtPwwig', description: 'Graceful statements for your fingers' },
-  { name: 'Earrings', slug: 'earrings', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA-j05MfHAu32diN6AF776Wd6WWOiB0XnFY4XrUaeXxvDTHTE2q2dp5WIPuvMODDCYzzuIwn3ZSk84KnDDjy0w3o7lV8wXwhM463wPoD1QMABoRO-rhYT0d6NdRgb-RXqfshE8Xdu6-Yw_HLoxu_8KDMFZvY_MmRtu1adRl7RkT1Mip88rgAIhlKQeIonYhxbjtTTZVYhfDzOZbkSd2cc1XnqoPTsMwdxyuKULrgrPZHUwEJ2bJRi9Twa6NtEK7YUNr25gZWQJxhcU', description: 'Frame your face with delicate shimmer' },
-  { name: 'Necklaces', slug: 'necklaces', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCWLBl2l6Tz-HYvqOA_Bo3lYks5rPPUfQOEinnEj9cQDrGDhCUJKGzGnowSImR1R7E7V1o4BcODUqSGo6oR5gqQLnUB-SBtpNvnZsDGlbIoFxfq6YIMPgyGkcRV-ZxWj4T0NDmIa8fo0BVcs8u8AcbKPYfeI-Hrc01vPBaJnVFNQcZSod6TPi-5PviNZOlcXXrhq-U3ShyXkcDVqSECsaDe4pgPy58fufjZlhRpB40V1a3JF3bu00CuGrEnt1zaMpPdUKDFyRK6llY', description: 'Sculptured details to grace the collar' },
-  { name: 'Bracelets', slug: 'bracelets', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBb5TFOhzutiWC1yEPv7IwIgA8Mrfr5MQqk59Oh26IMFn3n4_jgn5YNwgmEeoBfuR35HrQvzLnaSfRHFqua1wao5SlovzK771t6mDgzDtvucAU78WHLqXA3RTpVqqAe0O-NNsxVjix5oDdOujccTWW_Da-Mk5jw_noUjB6fPpULUPa7BIKYYNQgwdv5RvJ4vRDrPTgncm728IkxM_x6FUZrg5qRGrnnouuvc7pLJaS3ZAvC7iB-59zXEIhHoC4_tMP_kFyhSxXMp7U', description: 'Elegance that flows with every movement' },
-  { name: 'Bangles', slug: 'bangles', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAVEnwYcLsPZ2260kfauZHwykNM4NBuZPkWiQdagtIyx9SWgfDX9fSY3ckB2sVVlHXpYA5joX1kjqrTFU1yPpAt2PgBop84isV6ZpOfy9M0gy1ZZtlPQ_LEDbTm_7aw7s-PKnYeETKI0fFIYxRzE_TiRZH_9T_UrobFJ6zQHqxzygjXpc0J4eWXngu0yUPQgvyWQNMLSYKQm579tNcM4j-6ampqhDmNQXsVmMd64hrP-gwmhdgbGmsNfrQcyiUWLNbfRogIH_QOzQs', description: 'Timeless circular gold cuffs' }
+  { name: 'Rings', slug: 'rings', image: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80', description: 'Graceful statements for your fingers' },
+  { name: 'Earrings', slug: 'earrings', image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=800&q=80', description: 'Frame your face with delicate shimmer' },
+  { name: 'Necklaces', slug: 'necklaces', image: 'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=80', description: 'Sculptured details to grace the collar' },
+  { name: 'Bracelets', slug: 'bracelets', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80', description: 'Elegance that flows with every movement' },
+  { name: 'Bangles', slug: 'bangles', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=800&q=80', description: 'Timeless circular gold cuffs' }
 ];
 
 const productsData = [
@@ -15,8 +15,7 @@ const productsData = [
     price: 1250,
     discount: 10,
     images: [
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuDPlTKlFbtjogeBjvDmrUeyv6a_a5DpKMSR7Gh4Wc8d2cR6TYC1R19ZcDqBkvAyE4ktlJ3iM69ko3G8DhC8d_ZLuzNZ4zTTdGlp7zSAy-PtGKqHAdoBlRLpdxziPKxUWQk8YFk_DhjmqdADcZG4B2W-f9WSZPotf00wVqz0hKbknqbkgIQkLTRqq6ge3ZHwuLb6V9s27iizwn-hXWzJleA1rhuvwTLtH4EzWJxDs3bPv55KLcxoPVDC6kCrvVsmCGmOocGxWtPwwig',
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuBOckzl1rf34oYBqeYu4_FsuyBeqgAt3Uu46Salfr_MCQLibQ8UnlU2yvQErTQQnwCMb7ipZwyd9-E7nPwar6gEFgFzLaU0WB-Bbu-WRD_VjzhfLeJsH98QU9wPmymBSIdISrQC6uJ6xvByY1y_05QLYLHAOdUvlCD5LbAfIDBtHFV1LRAzLQ7dUN7ugtqYu0nUkknwNaMAM3sCNcRXUtwWfkq_nnIEFC512WOKVUsbHj2NrAWR4JebJbNaZxvVNkufr02gaomWEko'
+      'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80'
     ],
     videoUrl: '',
     category: 'Rings',
@@ -39,8 +38,7 @@ const productsData = [
     price: 890,
     discount: 0,
     images: [
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCWLBl2l6Tz-HYvqOA_Bo3lYks5rPPUfQOEinnEj9cQDrGDhCUJKGzGnowSImR1R7E7V1o4BcODUqSGo6oR5gqQLnUB-SBtpNvnZsDGlbIoFxfq6YIMPgyGkcRV-ZxWj4T0NDmIa8fo0BVcs8u8AcbKPYfeI-Hrc01vPBaJnVFNQcZSod6TPi-5PviNZOlcXXrhq-U3ShyXkcDVqSECsaDe4pgPy58fufjZlhRpB40V1a3JF3bu00CuGrEnt1zaMpPdUKDFyRK6llY',
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuDZw670Mo6vvHmqFz-l-1YV2xR6wS3_Xi148RlrXMosXE8kAfW3XrzfXWbruqpkNcKL8v2vvxBlO2Egf1wqfufz8Kjt0whUuAf3-Nq4Kfy2CsrNmQM1EDzO2NRKoKkVY5yU9qO0w7_TpISVFboURIMMSOw9yLbpuvPIBkGCr8FZgFSFC2nqG8HcSjwvXkgJ0nCJufjJsATYxoAa9tiM13r458qA_HUbIbf3xe3witECl4oA3D5oPXDvyJIrC4z6OzzYPvW9Rf8LQ7s'
+      'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=80'
     ],
     videoUrl: '',
     category: 'Necklaces',
@@ -63,7 +61,7 @@ const productsData = [
     price: 1400,
     discount: 15,
     images: [
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuAlhgs2Cb6GAs-lnJ5MXEykScInAFmBtVQbVaQrITHVcTuBH9nQwL8_Tt3eBe4qJkd3o2yEDUGXPLZPybxFUO4flX6mn2Mv7Rqi7nSwo14pUrbgI-7TvWbaMs4z94ejnBS-QylFuVXJcr-RL5-q0OXQs7buBPcbn_OAF3y4FZYC4hiHU4OypSWEKqAp1XlS4hYx_WkG3-eneKYSY8F5p_KY2kieKDajBlL7rFhclV5ZmmfgzlFyHVP00z4hYjHTuzwihjk-OOlCnqA'
+      'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=800&q=80'
     ],
     videoUrl: '',
     category: 'Earrings',
@@ -86,8 +84,7 @@ const productsData = [
     price: 2100,
     discount: 5,
     images: [
-      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=800&q=80',
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuAB7kBbqJ0zfV3TZtfJT-7m8QXy7Z56zSnkDGXlxBz7kW0l90I3Pyfdwwf0sJwLy_FAPB0ZrWVKthQZ6UCHxVLbB4I1K7VaZgz4iB4qsGpFXRmKgKUmBwId8NojAEZWlmF4KnH9KEcyVxvBXyRcNKHuJeBhhJh2JtnJ_KQ7UTK7RxBRWieK0XfJ_FeX-GV3xQglof1G3D9aCQAoG2Sn5d-BQwhzz97ZNwjBF9KPR2SaQMzEKUb3-LXIWujxQ41lVvXylzTWBsUL5AU'
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=800&q=80'
     ],
     videoUrl: '',
     category: 'Bangles',
@@ -110,7 +107,7 @@ const productsData = [
     price: 3500,
     discount: 0,
     images: [
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuA-j05MfHAu32diN6AF776Wd6WWOiB0XnFY4XrUaeXxvDTHTE2q2dp5WIPuvMODDCYzzuIwn3ZSk84KnDDjy0w3o7lV8wXwhM463wPoD1QMABoRO-rhYT0d6NdRgb-RXqfshE8Xdu6-Yw_HLoxu_8KDMFZvY_MmRtu1adRl7RkT1Mip88rgAIhlKQeIonYhxbjtTTZVYhfDzOZbkSd2cc1XnqoPTsMwdxyuKULrgrPZHUwEJ2bJRi9Twa6NtEK7YUNr25gZWQJxhcU'
+      'https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&w=800&q=80'
     ],
     videoUrl: '',
     category: 'Earrings',
@@ -133,7 +130,7 @@ const productsData = [
     price: 2800,
     discount: 0,
     images: [
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuB7ZgXK7gX_jZ_WDTtm7UCbroS8kZzVO3FHlU5qcOJ0asnPFsaWFmKp5VRFbsykjo3z2yDSLMF8hm3YpGsuVcouOFucmJQrJ2Ss6wcPz1VmIRlY_93aWFY7Mk3czD9JnXiwuUoPpPmhmyHcSU9UHl8qC2etfsLcXvkaw9s5auUOX9a94ezYFKtx1Wy_S0bsrcAPamkmgN_KUiOoaIReuHZUv5aAR1h30F5JN3fMcLJzMNtP0WrnNE25HWwA2czPuLE53Obreh0NhGE'
+      'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80'
     ],
     videoUrl: '',
     category: 'Rings',
