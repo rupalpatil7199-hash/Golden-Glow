@@ -163,7 +163,7 @@ const productsData = [
     price: 950,
     discount: 0,
     images: [
-      'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=80'
+      'https://images.unsplash.com/photo-1611087388916-b6c97e01735b?auto=format&fit=crop&w=800&q=80'
     ],
     videoUrl: '',
     category: 'Bracelets',
