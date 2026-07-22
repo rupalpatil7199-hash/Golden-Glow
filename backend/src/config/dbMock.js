@@ -149,6 +149,26 @@ const productsData = [
     isBestSeller: true,
     isNewArrival: false,
     occasion: ['Anniversary', 'Wedding']
+  },
+  {
+    title: 'Minimalist Chain Bracelet',
+    description: 'A classic chain bracelet featuring delicate interlocking links in solid 18K Yellow Gold. Designed for simple elegance.',
+    price: 950,
+    discount: 0,
+    images: ['https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=800&q=80'],
+    category: 'Bracelets',
+    material: '18K Yellow Gold',
+    weight: '4.8 grams',
+    stoneInfo: 'None',
+    sku: 'GG-BR-007',
+    stock: 15,
+    rating: 4.8,
+    reviewsCount: 10,
+    isFeatured: true,
+    isTrending: true,
+    isBestSeller: false,
+    isNewArrival: true,
+    occasion: ['Daily Wear']
   }
 ];
 
