@@ -186,7 +186,8 @@ const store = {
       fullName: 'Eleanor Vance',
       email: 'buyer@goldenglow.com',
       password: '$2a$10$/vuuyD3s.rMmD4wwQV8e/OGWJevUdwRM0IOP9XaLLHkvs4pOQlfOS',
-      role: 'customer'
+      role: 'customer',
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80'
     },
     {
       _id: 'user_admin_12345',
@@ -195,7 +196,8 @@ const store = {
       fullName: 'Alexander Thorne',
       email: 'admin@goldenglow.com',
       password: '$2a$10$/vuuyD3s.rMmD4wwQV8e/OGWJevUdwRM0IOP9XaLLHkvs4pOQlfOS',
-      role: 'admin'
+      role: 'admin',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80'
     }
   ],
   Review: []

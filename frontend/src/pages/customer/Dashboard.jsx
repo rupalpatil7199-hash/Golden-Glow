@@ -9,7 +9,7 @@ import { User, MapPin, Heart, ListOrdered, Download, Plus, Trash2, Calendar, Shi
 const Dashboard = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { user } = useAuthBridge();
+  const { user, getToken } = useAuthBridge();
   const { products, wishlist, toggleWishlist } = useShop();
   const { addToCart } = useCart();
   const { showSuccess, showError } = useNotification();
@@ -43,8 +43,28 @@ const Dashboard = () => {
 
   // Mock Orders History
   const [orders, setOrders] = useState([
-    { id: 'GG-892415', date: '2026-07-10', total: 1250, status: 'Shipped', tracking: 'UPS-982401258', items: [{ title: 'Geometric Signet Ring', qty: 1, price: 1250, img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDPlTKlFbtjogeBjvDmrUeyv6a_a5DpKMSR7Gh4Wc8d2cR6TYC1R19ZcDqBkvAyE4ktlJ3iM69ko3G8DhC8d_ZLuzNZ4zTTdGlp7zSAy-PtGKqHAdoBlRLpdxziPKxUWQk8YFk_DhjmqdADcZG4B2W-f9WSZPotf00wVqz0hKbknqbkgIQkLTRqq6ge3ZHwuLb6V9s27iizwn-hXWzJleA1rhuvwTLtH4EzWJxDs3bPv55KLcxoPVDC6kCrvVsmCGmOocGxWtPwwig' }] }
+    { id: 'GG-892415', date: '2026-07-10', total: 1250, status: 'Shipped', tracking: 'UPS-892415', items: [{ title: 'Geometric Signet Ring', quantity: 1, price: 1250, image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDPlTKlFbtjogeBjvDmrUeyv6a_a5DpKMSR7Gh4Wc8d2cR6TYC1R19ZcDqBkvAyE4ktlJ3iM69ko3G8DhC8d_ZLuzNZ4zTTdGlp7zSAy-PtGKqHAdoBlRLpdxziPKxUWQk8YFk_DhjmqdADcZG4B2W-f9WSZPotf00wVqz0hKbknqbkgIQkLTRqq6ge3ZHwuLb6V9s27iizwn-hXWzJleA1rhuvwTLtH4EzWJxDs3bPv55KLcxoPVDC6kCrvVsmCGmOocGxWtPwwig' }] }
   ]);
+
+  const fetchOrders = async () => {
+    if (!user) return;
+    try {
+      const token = await getToken();
+      const res = await fetch('/api/orders/my-orders', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await res.json();
+      if (data.success && data.orders && data.orders.length > 0) {
+        setOrders(data.orders);
+      }
+    } catch (err) {
+      console.warn('Backend orders fetch failed, staying local / mock.');
+    }
+  };
+
+  useEffect(() => {
+    fetchOrders();
+  }, [user]);
 
   if (!user) {
     return (
@@ -91,7 +111,12 @@ const Dashboard = () => {
       {/* Sidebar navigation */}
       <aside className="w-full md:w-64 flex-shrink-0">
         <div className="bg-white border border-surface-container rounded-2xl p-6 text-center space-y-4">
-          <img src={user.avatar} alt={user.fullName} className="w-20 h-20 rounded-full border border-primary-glow object-cover mx-auto" />
+          <img 
+            src={user.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80'} 
+            alt={user.fullName} 
+            onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80'; }}
+            className="w-20 h-20 rounded-full border border-primary-glow object-cover mx-auto" 
+          />
           <div>
             <h3 className="font-serif text-md font-bold text-luxuryBlack">{user.fullName}</h3>
             <p className="text-[10px] text-secondary uppercase tracking-widest font-semibold">{user.role} profile</p>
@@ -166,15 +191,23 @@ const Dashboard = () => {
                     </div>
 
                     {/* Order items lists */}
-                    {ord.items.map((item, idx) => (
-                      <div key={idx} className="flex gap-4 items-center">
-                        <img src={item.img} alt={item.title} className="w-12 h-16 object-cover bg-surface-container rounded" />
-                        <div>
-                          <p className="text-xs font-bold text-luxuryBlack">{item.title}</p>
-                          <p className="text-[10px] text-secondary mt-1">Quantity: {item.qty} | Price: ${item.price.toLocaleString()}</p>
+                    {ord.items.map((item, idx) => {
+                      const placeholderJewelry = 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=150&h=200&q=80';
+                      return (
+                        <div key={idx} className="flex gap-4 items-center">
+                          <img 
+                            src={item.image || item.img || placeholderJewelry} 
+                            alt={item.title} 
+                            onError={(e) => { e.target.src = placeholderJewelry; }}
+                            className="w-12 h-16 object-cover bg-surface-container rounded" 
+                          />
+                          <div>
+                            <p className="text-xs font-bold text-luxuryBlack">{item.title}</p>
+                            <p className="text-[10px] text-secondary mt-1">Quantity: {item.quantity || item.qty} | Price: ${item.price.toLocaleString()}</p>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-surface-container/40 justify-between items-start sm:items-center">
                       <p className="text-xs text-secondary font-medium">Tracking Code: <span className="font-semibold text-luxuryBlack font-sans">{ord.tracking}</span></p>
